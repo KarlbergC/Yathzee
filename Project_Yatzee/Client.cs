@@ -110,7 +110,6 @@ namespace Project_Yatzee
         {
             TextBox tempBox = _form1.textBoxList2.ElementAt(temp.Row);
             tempBox.Invoke(new Action(() => tempBox.Text = temp.SingleScoreValue.ToString()));
-            //tempBox.Text = temp.SingleScoreValue.ToString();
         }
 
         internal void SendMessage()
