@@ -17,20 +17,22 @@ namespace Project_Yatzee
     class Client
     {
         ScoreTable scoreTableMessage;
-       public List <DiceButton> diceButtonMessage = new List<DiceButton>();
+        public List<DiceButton> diceButtonMessage = new List<DiceButton>();
         private TcpClient client;
         private string ipAddress;
+        private Form1 _form1;
         int port;
 
         public Client()
         {
 
         }
-        public Client(string ipAddress, ScoreTable scoreTableMessage, List<DiceButton> diceButtonMessage, int port = 5000)
+        public Client(string ipAddress,Form1 form1, ScoreTable scoreTableMessage, List<DiceButton> diceButtonMessage, int port = 5000)
         {
             this.ipAddress = ipAddress;
             this.scoreTableMessage = scoreTableMessage;
             this.port = port;
+            _form1 = form1;
             //Instansiera listan här?
             this.Start();
         }
@@ -82,7 +84,7 @@ namespace Project_Yatzee
                     if (o is ScoreTable)
                     {
                         ScoreTable temp = o as ScoreTable;
-
+                        UpdateList(temp);
                         //uppdatera listan
                     }
                 }
@@ -92,6 +94,12 @@ namespace Project_Yatzee
                 MessageBox.Show(ex.Message);
                 throw;
             }
+        }
+
+        private void UpdateList(ScoreTable temp)
+        {
+            TextBox tempBox = _form1.textBoxList2.ElementAt(temp.Row);
+            tempBox.Text = temp.SingleScoreValue.ToString();
         }
 
         internal void SendMessage()

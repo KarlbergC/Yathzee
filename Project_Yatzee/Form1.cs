@@ -23,6 +23,8 @@ namespace Project_Yatzee
         ScoreTable scoreTable = new ScoreTable();
        // public List<DiceButton> diceButtonMessage = new List<DiceButton>();
         CalculateScore score = new CalculateScore();
+        public List<TextBox> textBoxList1 = new List<TextBox>();
+        public List<TextBox> textBoxList2 = new List<TextBox>();
 
         public Form1()
         {
@@ -115,7 +117,7 @@ namespace Project_Yatzee
                 tableLayoutPanel1.Controls[0].Text = scoreTable.SingleScoreValue.ToString();
                 CalculateTotal(scoreTable.SingleScoreValue);
                 CalulateTotalUpper(scoreTable.SingleScoreValue);
-
+                scoreTable.Row = 0;
                 clientPlayer.Send(scoreTable);
             }
         }
@@ -129,12 +131,13 @@ namespace Project_Yatzee
 
             //TextBox TB = sender as TextBox;
             //int index = this.tableLayoutPanel1.Controls.GetChildIndex(TB);
-
+           
             int rowIndex = 0;
             int columnIndex = 0;
             for (int i = 0; i < 18; i++)
             {
                 TextBox Text = new TextBox();
+                textBoxList1.Add(Text);
                 Text.Name = "text+" + i + 1;
                 //Text.TextChanged += new System.EventHandler(this.TB_TextChanged);
                 if (i % 2 == 0 && i > 0)
@@ -150,6 +153,7 @@ namespace Project_Yatzee
             for (int i = 0; i < 18; i++)
             {
                 TextBox Text = new TextBox();
+                textBoxList2.Add(Text);
                 Text.Name = "text+" + i + 1;
                 //Text.TextChanged += new System.EventHandler(this.TB_TextChanged);
                 if (i % 2 == 0 && i > 0)
@@ -172,6 +176,7 @@ namespace Project_Yatzee
                 tableLayoutPanel1.Controls[1].Text = scoreTable.SingleScoreValue.ToString();
                 CalculateTotal(scoreTable.SingleScoreValue);
                 CalulateTotalUpper(scoreTable.SingleScoreValue);
+                scoreTable.Row = 1;
                 clientPlayer.Send(scoreTable);
                 //foreach (var item in Controls)
                 //{
@@ -188,6 +193,7 @@ namespace Project_Yatzee
                 tableLayoutPanel1.Controls[2].Text = scoreTable.SingleScoreValue.ToString();
                 CalculateTotal(scoreTable.SingleScoreValue);
                 CalulateTotalUpper(scoreTable.SingleScoreValue);
+                scoreTable.Row = 2;
                 clientPlayer.Send(scoreTable);
             }
         }
@@ -201,6 +207,7 @@ namespace Project_Yatzee
                 tableLayoutPanel1.Controls[3].Text = scoreTable.SingleScoreValue.ToString();
                 CalculateTotal(scoreTable.SingleScoreValue);
                 CalulateTotalUpper(scoreTable.SingleScoreValue);
+                scoreTable.Row = 3;
                 clientPlayer.Send(scoreTable);
             }
         }
@@ -235,6 +242,7 @@ namespace Project_Yatzee
                 tableLayoutPanel1.Controls[4].Text = scoreTable.SingleScoreValue.ToString();
                 CalculateTotal(scoreTable.SingleScoreValue);
                 CalulateTotalUpper(scoreTable.SingleScoreValue);
+                scoreTable.Row = 4;
                 clientPlayer.Send(scoreTable);
             }
         }
@@ -247,6 +255,7 @@ namespace Project_Yatzee
                 tableLayoutPanel1.Controls[5].Text = scoreTable.SingleScoreValue.ToString();
                 CalculateTotal(scoreTable.SingleScoreValue);
                 CalulateTotalUpper(scoreTable.SingleScoreValue);
+                scoreTable.Row = 5;
                 clientPlayer.Send(scoreTable);
             }
         }
@@ -259,6 +268,7 @@ namespace Project_Yatzee
                 tableLayoutPanel1.Controls[10].Text = scoreTable.SingleScoreValue.ToString();
                 CalculateTotal(scoreTable.SingleScoreValue);
                 CalulateTotalLower(scoreTable.SingleScoreValue);
+                scoreTable.Row = 10;
                 clientPlayer.Send(scoreTable);
             }
         }
@@ -272,6 +282,7 @@ namespace Project_Yatzee
 
                 CalulateTotalLower(scoreTable.SingleScoreValue);
                 CalculateTotal(scoreTable.SingleScoreValue);
+                scoreTable.Row = 11;
                 clientPlayer.Send(scoreTable);
             }
         }
@@ -296,6 +307,7 @@ namespace Project_Yatzee
                 tableLayoutPanel1.Controls[12].Text = scoreTable.SingleScoreValue.ToString();
                 CalulateTotalLower(scoreTable.SingleScoreValue);
                 CalculateTotal(scoreTable.SingleScoreValue);
+                scoreTable.Row = 12;
                 clientPlayer.Send(scoreTable);
             }
         }
@@ -308,6 +320,7 @@ namespace Project_Yatzee
                 tableLayoutPanel1.Controls[13].Text = scoreTable.SingleScoreValue.ToString();
                 CalulateTotalLower(scoreTable.SingleScoreValue);
                 CalculateTotal(scoreTable.SingleScoreValue);
+                scoreTable.Row = 13;
                 clientPlayer.Send(scoreTable);
             }
         }
@@ -320,6 +333,7 @@ namespace Project_Yatzee
                 tableLayoutPanel1.Controls[14].Text = scoreTable.SingleScoreValue.ToString();
                 CalulateTotalLower(scoreTable.SingleScoreValue);
                 CalculateTotal(scoreTable.SingleScoreValue);
+                scoreTable.Row = 14;
                 clientPlayer.Send(scoreTable);
             }
         }
@@ -332,6 +346,7 @@ namespace Project_Yatzee
                 tableLayoutPanel1.Controls[15].Text = scoreTable.SingleScoreValue.ToString();
                 CalulateTotalLower(scoreTable.SingleScoreValue);
                 CalculateTotal(scoreTable.SingleScoreValue);
+                scoreTable.Row = 15;
                 clientPlayer.Send(scoreTable);
             }
         }
@@ -346,15 +361,13 @@ namespace Project_Yatzee
                 CalulateTotalLower(scoreTable.SingleScoreValue);
 
                 CalculateTotal(scoreTable.SingleScoreValue);
+                scoreTable.Row = 9;
                 clientPlayer.Send(scoreTable);
                 //int temp = Convert.ToInt32(tableLayoutPanel1.Controls[16].Text) +displayScore;
                 //tableLayoutPanel1.Controls[16].Text += temp.ToString();
             }
         }
-        private void AddToTotal(int position, int scoreToAdd, bool LowerScore)
-        {
 
-        }
 
         private void buttonBonus_Click(object sender, EventArgs e)
         {
@@ -362,6 +375,7 @@ namespace Project_Yatzee
             {
                 tableLayoutPanel1.Controls[7].Text = "50";
                 CalculateTotal(50);
+                scoreTable.Row = 7;
             }
             clientPlayer.Send(scoreTable);
         }
