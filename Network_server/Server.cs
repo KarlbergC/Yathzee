@@ -56,7 +56,7 @@ namespace Network_server
                 {
                     NetworkStream n = tmpClient.tcpClient.GetStream();
                     BinaryWriter w = new BinaryWriter(n);
-                    w.Write(client.userName + ": " + message);
+                    w.Write(message);
                     w.Flush();
                 }
                 else if (clients.Count() == 1)

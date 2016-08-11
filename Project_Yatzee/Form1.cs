@@ -16,7 +16,7 @@ namespace Project_Yatzee
 {
     public partial class Form1 : Form
     {
-        Client clientPlayer = new Client();
+        Client clientPlayer;
         TcpClient client;
         public int counter;
         public int counterClicked = 0;
@@ -125,13 +125,13 @@ namespace Project_Yatzee
         private void Form1_Load(object sender, EventArgs e)
         {
 
-
+            clientPlayer = new Client(this);
             //TextBox Text1 = new TextBox();
             //tableLayoutPanel1.Controls.Add(Text1, 0, 0);
 
             //TextBox TB = sender as TextBox;
             //int index = this.tableLayoutPanel1.Controls.GetChildIndex(TB);
-           
+
             int rowIndex = 0;
             int columnIndex = 0;
             for (int i = 0; i < 18; i++)

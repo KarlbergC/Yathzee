@@ -23,8 +23,9 @@ namespace Project_Yatzee
         private Form1 _form1;
         int port;
 
-        public Client()
+        public Client(Form1 form1)
         {
+            _form1 = form1;
 
         }
         public Client(string ipAddress, Form1 form1, ScoreTable scoreTableMessage, List<DiceButton> diceButtonMessage, int port = 5000)
@@ -82,7 +83,7 @@ namespace Project_Yatzee
                     MessageBox.Show(message);
                     try
                     {
-                        object o = JsonConvert.DeserializeObject(message);
+                        object o = JsonConvert.DeserializeObject<ScoreTable>(message);
                         if (o is ScoreTable)
                         {
                             ScoreTable temp = o as ScoreTable;
