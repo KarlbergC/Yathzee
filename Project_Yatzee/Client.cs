@@ -10,13 +10,14 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.VisualBasic;
 
 namespace Project_Yatzee
 {
     class Client
     {
         ScoreTable scoreTableMessage;
-        List <DiceButton> diceButtonMessage;
+       public List <DiceButton> diceButtonMessage = new List<DiceButton>();
         private TcpClient client;
         private string ipAddress;
         int port;
@@ -38,11 +39,11 @@ namespace Project_Yatzee
         {
             client = new TcpClient("192.168.220.107", 5000);
 
-            Thread listenerThread = new Thread(SendMessage);
-            listenerThread.Start();
+            //Thread listenerThread = new Thread(SendMessage);
+            //listenerThread.Start();
 
-            Thread senderThread = new Thread(Listen);
-            senderThread.Start();
+            //Thread senderThread = new Thread(Listen);
+            //senderThread.Start();
 
             //senderThread.Join();
             //listenerThread.Join();
@@ -77,12 +78,13 @@ namespace Project_Yatzee
                     NetworkStream n = client.GetStream();
                     message = new BinaryReader(n).ReadString();
                     MessageBox.Show(message);
-                    //object o = JsonConvert.DeserializeObject(message);
-                    //if (o is ScoreTable)
-                    //{
-                    //    ScoreTable temp = o as ScoreTable;
-                    //    //uppdatera listan
-                    //}
+                    object o = JsonConvert.DeserializeObject(message);
+                    if (o is ScoreTable)
+                    {
+                        ScoreTable temp = o as ScoreTable;
+
+                        //uppdatera listan
+                    }
                 }
             }
             catch (Exception ex)

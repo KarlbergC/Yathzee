@@ -13,6 +13,6 @@ namespace Project_Yatzee.GameLogic
         public int TotalLowerScore { get; set; }
         public int TotalUpperScore { get; set; }
         public int Row { get; set; }
-        public int Column { get; set; }
+
     }
 }

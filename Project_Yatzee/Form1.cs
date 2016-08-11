@@ -20,11 +20,8 @@ namespace Project_Yatzee
         TcpClient client;
         public int counter;
         public int counterClicked = 0;
-        //public int TotalScore;
-        //public int TotalLowerScore;
-        //public int TotalUpperScore;
         ScoreTable scoreTable = new ScoreTable();
-        public List<DiceButton> buttonList = new List<DiceButton>();
+       // public List<DiceButton> diceButtonMessage = new List<DiceButton>();
         CalculateScore score = new CalculateScore();
 
         public Form1()
@@ -35,11 +32,12 @@ namespace Project_Yatzee
 
         public void CreateButtonList()
         {
-            buttonList.Add(buttonDice1);
-            buttonList.Add(buttonDice2);
-            buttonList.Add(buttonDice3);
-            buttonList.Add(buttonDice4);
-            buttonList.Add(buttonDice5);
+            clientPlayer.diceButtonMessage.Add(buttonDice1);
+            clientPlayer.diceButtonMessage.Add(buttonDice1);
+            clientPlayer.diceButtonMessage.Add(buttonDice2);
+            clientPlayer.diceButtonMessage.Add(buttonDice3);
+            clientPlayer.diceButtonMessage.Add(buttonDice4);
+            clientPlayer.diceButtonMessage.Add(buttonDice5);
         }
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
@@ -62,7 +60,7 @@ namespace Project_Yatzee
         {
             Random rnd = new Random();
 
-            foreach (var button in buttonList)
+            foreach (var button in clientPlayer.diceButtonMessage)
             {
                 if (!button.HoldState)
                 {
@@ -112,11 +110,13 @@ namespace Project_Yatzee
         {
             if ((counter > 0) && (tableLayoutPanel1.Controls[0].Text == ""))
             {
-                int displayScore = score.AddUpDice(1, buttonList);
-                tableLayoutPanel1.Controls[0].Text = displayScore.ToString();
-                CalculateTotal(displayScore);
-                CalulateTotalUpper(displayScore);
-                clientPlayer.SendMessage();
+                scoreTable.SingleScoreValue = score.AddUpDice(1, clientPlayer.diceButtonMessage);
+
+                tableLayoutPanel1.Controls[0].Text = scoreTable.SingleScoreValue.ToString();
+                CalculateTotal(scoreTable.SingleScoreValue);
+                CalulateTotalUpper(scoreTable.SingleScoreValue);
+
+                clientPlayer.Send(scoreTable);
             }
         }
 
@@ -145,6 +145,21 @@ namespace Project_Yatzee
                     columnIndex = 0;
                 this.tableLayoutPanel1.Controls.Add(Text, columnIndex, rowIndex);
             }
+            int rowIndex2 = 0;
+            int columnIndex2 = 0;
+            for (int i = 0; i < 18; i++)
+            {
+                TextBox Text = new TextBox();
+                Text.Name = "text+" + i + 1;
+                //Text.TextChanged += new System.EventHandler(this.TB_TextChanged);
+                if (i % 2 == 0 && i > 0)
+                    rowIndex2++;
+                if (i % 2 != 0 && i > 0)
+                    columnIndex2++;
+                else
+                    columnIndex2 = 0;
+                this.tableLayoutPanel2.Controls.Add(Text, columnIndex2, rowIndex2);
+            }
             clientPlayer.Start();
             //skriv ip address etc
         }
@@ -153,10 +168,15 @@ namespace Project_Yatzee
         {
             if ((counter > 0) && (tableLayoutPanel1.Controls[1].Text == ""))
             {
-                int displayScore = score.AddUpDice(2, buttonList);
-                tableLayoutPanel1.Controls[1].Text = displayScore.ToString();
-                CalculateTotal(displayScore);
-                CalulateTotalUpper(displayScore);
+                scoreTable.SingleScoreValue = score.AddUpDice(2, clientPlayer.diceButtonMessage);
+                tableLayoutPanel1.Controls[1].Text = scoreTable.SingleScoreValue.ToString();
+                CalculateTotal(scoreTable.SingleScoreValue);
+                CalulateTotalUpper(scoreTable.SingleScoreValue);
+                clientPlayer.Send(scoreTable);
+                //foreach (var item in Controls)
+                //{
+                //    ((Control)item).Enabled = false;
+                //}
             }
         }
 
@@ -164,10 +184,11 @@ namespace Project_Yatzee
         {
             if ((counter > 0) && (tableLayoutPanel1.Controls[2].Text == ""))
             {
-                int displayScore = score.AddUpDice(3, buttonList);
-                tableLayoutPanel1.Controls[2].Text = displayScore.ToString();
-                CalculateTotal(displayScore);
-                CalulateTotalUpper(displayScore);
+                scoreTable.SingleScoreValue = score.AddUpDice(3, clientPlayer.diceButtonMessage);
+                tableLayoutPanel1.Controls[2].Text = scoreTable.SingleScoreValue.ToString();
+                CalculateTotal(scoreTable.SingleScoreValue);
+                CalulateTotalUpper(scoreTable.SingleScoreValue);
+                clientPlayer.Send(scoreTable);
             }
         }
 
@@ -176,10 +197,11 @@ namespace Project_Yatzee
         {
             if ((counter > 0) && (tableLayoutPanel1.Controls[3].Text == ""))
             {
-                int displayScore = score.AddUpDice(4, buttonList);
-                tableLayoutPanel1.Controls[3].Text = displayScore.ToString();
-                CalculateTotal(displayScore);
-                CalulateTotalUpper(displayScore);
+                scoreTable.SingleScoreValue = score.AddUpDice(4, clientPlayer.diceButtonMessage);
+                tableLayoutPanel1.Controls[3].Text = scoreTable.SingleScoreValue.ToString();
+                CalculateTotal(scoreTable.SingleScoreValue);
+                CalulateTotalUpper(scoreTable.SingleScoreValue);
+                clientPlayer.Send(scoreTable);
             }
         }
 
@@ -197,7 +219,7 @@ namespace Project_Yatzee
 
         private void ResetDice()
         {
-            foreach (var listButton in buttonList)
+            foreach (var listButton in clientPlayer.diceButtonMessage)
             {
                 listButton.HoldState = false;
                 listButton.BackColor = Color.LightGray;
@@ -209,10 +231,11 @@ namespace Project_Yatzee
         {
             if ((counter > 0) && (tableLayoutPanel1.Controls[4].Text == ""))
             {
-                int displayScore = score.AddUpDice(5, buttonList);
-                tableLayoutPanel1.Controls[4].Text = displayScore.ToString();
-                CalculateTotal(displayScore);
-                CalulateTotalUpper(displayScore);
+                scoreTable.SingleScoreValue = score.AddUpDice(5, clientPlayer.diceButtonMessage);
+                tableLayoutPanel1.Controls[4].Text = scoreTable.SingleScoreValue.ToString();
+                CalculateTotal(scoreTable.SingleScoreValue);
+                CalulateTotalUpper(scoreTable.SingleScoreValue);
+                clientPlayer.Send(scoreTable);
             }
         }
 
@@ -220,10 +243,11 @@ namespace Project_Yatzee
         {
             if ((counter > 0) && (tableLayoutPanel1.Controls[5].Text == ""))
             {
-                int displayScore = score.AddUpDice(6, buttonList);
-                tableLayoutPanel1.Controls[5].Text = displayScore.ToString();
-                CalculateTotal(displayScore);
-                CalulateTotalUpper(displayScore);
+                scoreTable.SingleScoreValue = score.AddUpDice(6, clientPlayer.diceButtonMessage);
+                tableLayoutPanel1.Controls[5].Text = scoreTable.SingleScoreValue.ToString();
+                CalculateTotal(scoreTable.SingleScoreValue);
+                CalulateTotalUpper(scoreTable.SingleScoreValue);
+                clientPlayer.Send(scoreTable);
             }
         }
 
@@ -231,10 +255,11 @@ namespace Project_Yatzee
         {
             if ((counter > 0) && (tableLayoutPanel1.Controls[10].Text == ""))
             {
-                int displayScore = score.CalculateThreeOfAKind(buttonList);
-                tableLayoutPanel1.Controls[10].Text = displayScore.ToString();
-                CalculateTotal(displayScore);
-                CalulateTotalLower(displayScore);
+                scoreTable.SingleScoreValue = score.CalculateThreeOfAKind(clientPlayer.diceButtonMessage);
+                tableLayoutPanel1.Controls[10].Text = scoreTable.SingleScoreValue.ToString();
+                CalculateTotal(scoreTable.SingleScoreValue);
+                CalulateTotalLower(scoreTable.SingleScoreValue);
+                clientPlayer.Send(scoreTable);
             }
         }
 
@@ -242,11 +267,12 @@ namespace Project_Yatzee
         {
             if ((counter > 0) && (tableLayoutPanel1.Controls[11].Text == ""))
             {
-                int displayScore = score.CalculateFourOfAKind(buttonList);
-                tableLayoutPanel1.Controls[11].Text = displayScore.ToString();
+                scoreTable.SingleScoreValue = score.CalculateFourOfAKind(clientPlayer.diceButtonMessage);
+                tableLayoutPanel1.Controls[11].Text = scoreTable.SingleScoreValue.ToString();
 
-                CalulateTotalLower(displayScore);
-                CalculateTotal(displayScore);
+                CalulateTotalLower(scoreTable.SingleScoreValue);
+                CalculateTotal(scoreTable.SingleScoreValue);
+                clientPlayer.Send(scoreTable);
             }
         }
 
@@ -266,10 +292,11 @@ namespace Project_Yatzee
         {
             if ((counter > 0) && (tableLayoutPanel1.Controls[12].Text == ""))
             {
-                int displayScore = score.CalculateFullHouse(buttonList);
-                tableLayoutPanel1.Controls[12].Text = displayScore.ToString();
-                CalulateTotalLower(displayScore);
-                CalculateTotal(displayScore);
+                scoreTable.SingleScoreValue = score.CalculateFullHouse(clientPlayer.diceButtonMessage);
+                tableLayoutPanel1.Controls[12].Text = scoreTable.SingleScoreValue.ToString();
+                CalulateTotalLower(scoreTable.SingleScoreValue);
+                CalculateTotal(scoreTable.SingleScoreValue);
+                clientPlayer.Send(scoreTable);
             }
         }
 
@@ -277,10 +304,11 @@ namespace Project_Yatzee
         {
             if ((counter > 0) && (tableLayoutPanel1.Controls[13].Text == ""))
             {
-                int displayScore = score.CalculateSmallStraight(buttonList);
-                tableLayoutPanel1.Controls[13].Text = displayScore.ToString();
-                CalulateTotalLower(displayScore);
-                CalculateTotal(displayScore);
+                scoreTable.SingleScoreValue = score.CalculateSmallStraight(clientPlayer.diceButtonMessage);
+                tableLayoutPanel1.Controls[13].Text = scoreTable.SingleScoreValue.ToString();
+                CalulateTotalLower(scoreTable.SingleScoreValue);
+                CalculateTotal(scoreTable.SingleScoreValue);
+                clientPlayer.Send(scoreTable);
             }
         }
 
@@ -288,10 +316,11 @@ namespace Project_Yatzee
         {
             if ((counter > 0) && (tableLayoutPanel1.Controls[14].Text == ""))
             {
-                int displayScore = score.CalculateLargeStraight(buttonList);
-                tableLayoutPanel1.Controls[14].Text = displayScore.ToString();
-                CalulateTotalLower(displayScore);
-                CalculateTotal(displayScore);
+                scoreTable.SingleScoreValue = score.CalculateLargeStraight(clientPlayer.diceButtonMessage);
+                tableLayoutPanel1.Controls[14].Text = scoreTable.SingleScoreValue.ToString();
+                CalulateTotalLower(scoreTable.SingleScoreValue);
+                CalculateTotal(scoreTable.SingleScoreValue);
+                clientPlayer.Send(scoreTable);
             }
         }
 
@@ -299,10 +328,11 @@ namespace Project_Yatzee
         {
             if ((counter > 0) && (tableLayoutPanel1.Controls[15].Text == ""))
             {
-                int displayScore = score.CalculateYahtzee(buttonList);
-                tableLayoutPanel1.Controls[15].Text = displayScore.ToString();
-                CalulateTotalLower(displayScore);
-                CalculateTotal(displayScore);
+                scoreTable.SingleScoreValue = score.CalculateYahtzee(clientPlayer.diceButtonMessage);
+                tableLayoutPanel1.Controls[15].Text = scoreTable.SingleScoreValue.ToString();
+                CalulateTotalLower(scoreTable.SingleScoreValue);
+                CalculateTotal(scoreTable.SingleScoreValue);
+                clientPlayer.Send(scoreTable);
             }
         }
 
@@ -310,12 +340,13 @@ namespace Project_Yatzee
         {
             if ((counter > 0) && (tableLayoutPanel1.Controls[9].Text == ""))
             {
-                int displayScore = score.AddUpChance(buttonList);
-                tableLayoutPanel1.Controls[9].Text = displayScore.ToString();
+                scoreTable.SingleScoreValue = score.AddUpChance(clientPlayer.diceButtonMessage);
+                tableLayoutPanel1.Controls[9].Text = scoreTable.SingleScoreValue.ToString();
 
-                CalulateTotalLower(displayScore);
+                CalulateTotalLower(scoreTable.SingleScoreValue);
 
-                CalculateTotal(displayScore);
+                CalculateTotal(scoreTable.SingleScoreValue);
+                clientPlayer.Send(scoreTable);
                 //int temp = Convert.ToInt32(tableLayoutPanel1.Controls[16].Text) +displayScore;
                 //tableLayoutPanel1.Controls[16].Text += temp.ToString();
             }
@@ -332,6 +363,7 @@ namespace Project_Yatzee
                 tableLayoutPanel1.Controls[7].Text = "50";
                 CalculateTotal(50);
             }
+            clientPlayer.Send(scoreTable);
         }
     }
 }
