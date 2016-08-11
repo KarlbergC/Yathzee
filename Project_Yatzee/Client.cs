@@ -37,14 +37,15 @@ namespace Project_Yatzee
         public void Start()
         {
             client = new TcpClient("192.168.220.107", 5000);
+
             Thread listenerThread = new Thread(SendMessage);
             listenerThread.Start();
 
             Thread senderThread = new Thread(Listen);
             senderThread.Start();
 
-            senderThread.Join();
-            listenerThread.Join();
+            //senderThread.Join();
+            //listenerThread.Join();
         }
 
         public void Send(ScoreTable scoreTableMessage)

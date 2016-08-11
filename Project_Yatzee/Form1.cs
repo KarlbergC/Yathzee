@@ -42,7 +42,6 @@ namespace Project_Yatzee
             buttonList.Add(buttonDice5);
         }
 
-
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
         }
@@ -89,7 +88,6 @@ namespace Project_Yatzee
                 diceButton.BackColor = Color.LightGray;
         }
 
-
         private void buttonDice1_MouseClick(object sender, MouseEventArgs e)
         {
         }
@@ -124,7 +122,8 @@ namespace Project_Yatzee
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            clientPlayer.Start();
+
+
             //TextBox Text1 = new TextBox();
             //tableLayoutPanel1.Controls.Add(Text1, 0, 0);
 
@@ -146,7 +145,7 @@ namespace Project_Yatzee
                     columnIndex = 0;
                 this.tableLayoutPanel1.Controls.Add(Text, columnIndex, rowIndex);
             }
-
+            clientPlayer.Start();
             //skriv ip address etc
         }
 
@@ -193,7 +192,7 @@ namespace Project_Yatzee
                 counter = 0;
                 counterClicked = 1;
                 ResetDice();
-            } 
+            }
         }
 
         private void ResetDice()
