@@ -108,7 +108,8 @@ namespace Project_Yatzee
         private void UpdateList(ScoreTable temp)
         {
             TextBox tempBox = _form1.textBoxList2.ElementAt(temp.Row);
-            tempBox.Text = temp.SingleScoreValue.ToString();
+            tempBox.Invoke(new Action(() => tempBox.Text = temp.SingleScoreValue.ToString()));
+            //tempBox.Text = temp.SingleScoreValue.ToString();
         }
 
         internal void SendMessage()
