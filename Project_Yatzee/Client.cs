@@ -27,7 +27,7 @@ namespace Project_Yatzee
         {
 
         }
-        public Client(string ipAddress,Form1 form1, ScoreTable scoreTableMessage, List<DiceButton> diceButtonMessage, int port = 5000)
+        public Client(string ipAddress, Form1 form1, ScoreTable scoreTableMessage, List<DiceButton> diceButtonMessage, int port = 5000)
         {
             this.ipAddress = ipAddress;
             this.scoreTableMessage = scoreTableMessage;
@@ -75,18 +75,27 @@ namespace Project_Yatzee
             string message = "";
             try
             {
-                while (true)
+                while (message != "quit")
                 {
                     NetworkStream n = client.GetStream();
                     message = new BinaryReader(n).ReadString();
                     MessageBox.Show(message);
-                    object o = JsonConvert.DeserializeObject(message);
-                    if (o is ScoreTable)
+                    try
                     {
-                        ScoreTable temp = o as ScoreTable;
-                        UpdateList(temp);
-                        //uppdatera listan
+                        object o = JsonConvert.DeserializeObject(message);
+                        if (o is ScoreTable)
+                        {
+                            ScoreTable temp = o as ScoreTable;
+                            UpdateList(temp);
+                            //uppdatera listan
+                        }
+
                     }
+                    catch (Exception)
+                    {
+                       
+                    }
+
                 }
             }
             catch (Exception ex)
