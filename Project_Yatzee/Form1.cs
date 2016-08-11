@@ -29,7 +29,6 @@ namespace Project_Yatzee
         public Form1()
         {
             InitializeComponent();
-            CreateButtonList();
         }
 
         public void CreateButtonList()
@@ -126,6 +125,8 @@ namespace Project_Yatzee
         {
 
             clientPlayer = new Client(this);
+            CreateButtonList();
+
             //TextBox Text1 = new TextBox();
             //tableLayoutPanel1.Controls.Add(Text1, 0, 0);
 
