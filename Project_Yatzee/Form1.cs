@@ -16,7 +16,7 @@ namespace Project_Yatzee
 {
     public partial class Form1 : Form
     {
-        Client clientPlayer;
+        Client clientPlayer = new Client();
         TcpClient client;
         public int counter;
         public int counterClicked = 0;
