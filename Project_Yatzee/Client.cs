@@ -112,9 +112,9 @@ namespace Project_Yatzee
             tempBox.Invoke(new Action(() => tempBox.Text = temp.SingleScoreValue.ToString()));
             TextBox tempBox2 = _form1.textBoxList2.ElementAt(6);
             tempBox2.Invoke(new Action(() => tempBox2.Text = temp.TotalUpperScore.ToString()));
-            TextBox tempBox3 = _form1.textBoxList2.ElementAt(17);
+            TextBox tempBox3 = _form1.textBoxList2.ElementAt(16);
             tempBox3.Invoke(new Action(() => tempBox3.Text = temp.TotalLowerScore.ToString()));
-            TextBox tempBox4 = _form1.textBoxList2.ElementAt(18);
+            TextBox tempBox4 = _form1.textBoxList2.ElementAt(17);
             tempBox4.Invoke(new Action(() => tempBox4.Text = temp.TotalScore.ToString()));
         }
 
