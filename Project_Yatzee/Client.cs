@@ -82,7 +82,7 @@ namespace Project_Yatzee
                     MessageBox.Show(message);
                     try
                     {
-                        object o = JsonConvert.DeserializeObject(message);
+                        object o = JsonConvert.DeserializeObject<ScoreTable>(message);
                         if (o is ScoreTable)
                         {
                             ScoreTable temp = o as ScoreTable;
