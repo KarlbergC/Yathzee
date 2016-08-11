@@ -44,8 +44,8 @@ namespace Project_Yatzee
             //Thread listenerThread = new Thread(SendMessage);
             //listenerThread.Start();
 
-            //Thread senderThread = new Thread(Listen);
-            //senderThread.Start();
+            Thread senderThread = new Thread(Listen);
+            senderThread.Start();
 
             //senderThread.Join();
             //listenerThread.Join();
