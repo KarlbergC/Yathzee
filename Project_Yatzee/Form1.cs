@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,6 +17,7 @@ namespace Project_Yatzee
     public partial class Form1 : Form
     {
         Client clientPlayer;
+        TcpClient client;
         public int counter;
         public int counterClicked = 0;
         //public int TotalScore;
@@ -116,11 +118,13 @@ namespace Project_Yatzee
                 tableLayoutPanel1.Controls[0].Text = displayScore.ToString();
                 CalculateTotal(displayScore);
                 CalulateTotalUpper(displayScore);
+                clientPlayer.SendMessage();
             }
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            clientPlayer.Start();
             //TextBox Text1 = new TextBox();
             //tableLayoutPanel1.Controls.Add(Text1, 0, 0);
 
@@ -244,7 +248,6 @@ namespace Project_Yatzee
 
                 CalulateTotalLower(displayScore);
                 CalculateTotal(displayScore);
-                clientPlayer.SendMessage();
             }
         }
 
