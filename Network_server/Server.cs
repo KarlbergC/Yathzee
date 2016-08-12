@@ -68,6 +68,7 @@ namespace Network_server
             Console.WriteLine(fromClient._remainingMoveCounter);
             fromClient.TotalScore = GiveMeTheTotalScore(message);
             Console.WriteLine(fromClient.TotalScore);
+
             if (clients.Any<ClientHandler>(x => x._remainingMoveCounter != 0))
             {
                 foreach (ClientHandler toClient in clients)
@@ -81,9 +82,26 @@ namespace Network_server
                         fromClient._remainingMoveCounter--;
                         if (clients.All<ClientHandler>(x => x._remainingMoveCounter == 0))
                         {
-                            CheckTotalScore(clients);
-                            Console.WriteLine("Slut på spelet");
+                            ClientHandler winner = GetWinner(clients);
 
+                            foreach (ClientHandler client in clients)
+                            {
+                                n = client.tcpClient.GetStream();
+                                w = new BinaryWriter(n);
+
+                                if (client == winner)
+                                {
+                                    w.Write("You're the WINNER! You're the BEST!!!");
+                                    w.Flush();
+                                }
+                                else
+                                {
+                                    w.Write("You're the LOOSER! You SUCK!!!");
+                                    w.Flush();
+                                }
+                            }
+
+                            Console.WriteLine("Slut på spelet");
                         }
                     }
 
@@ -96,20 +114,24 @@ namespace Network_server
                     }
                 }
             }
-            else
-            {
-                foreach (ClientHandler client in clients)
-                {
-                    NetworkStream n = client.tcpClient.GetStream();
-                    BinaryWriter w = new BinaryWriter(n);
-                    w.Write("Spelet är slut x vann");
-                    w.Flush();
-                }
-            }
+            //else
+            //{
+            //    foreach (ClientHandler client in clients)
+            //    {
+            //        NetworkStream n = client.tcpClient.GetStream();
+            //        BinaryWriter w = new BinaryWriter(n);
+            //        w.Write("Spelet är slut x vann");
+            //        w.Flush();
+            //    }
+            //}
         }
 
-        private void CheckTotalScore(List<ClientHandler> clients)
+        private ClientHandler GetWinner(List<ClientHandler> clients)
         {
+          return clients
+                .OrderByDescending(o => o.TotalScore)
+                .First();
+            
         }
     }
 }
