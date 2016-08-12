@@ -75,7 +75,7 @@ namespace Project_Yatzee
             string message = "";
             try
             {
-                while (message != "quit")
+                while (!message.ToLower().StartsWith("you"))
                 {
                     NetworkStream n = client.GetStream();
                     message = new BinaryReader(n).ReadString();
@@ -88,6 +88,10 @@ namespace Project_Yatzee
                             ScoreTable temp = o as ScoreTable;
                             UpdateList(temp);
                             EnablePanelContents(_form1);
+                        }
+                        else if (true)
+                        {
+
                         }
                     }
                     catch (Exception ex)
