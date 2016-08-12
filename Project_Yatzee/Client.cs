@@ -79,7 +79,6 @@ namespace Project_Yatzee
                 {
                     NetworkStream n = client.GetStream();
                     message = new BinaryReader(n).ReadString();
-                    MessageBox.Show(message);
                     if (!message.ToLower().StartsWith("you"))
                     {
 
