@@ -21,7 +21,7 @@ namespace Project_Yatzee
         public int counter;
         public int counterClicked = 0;
         ScoreTable scoreTable = new ScoreTable();
-       // public List<DiceButton> diceButtonMessage = new List<DiceButton>();
+        // public List<DiceButton> diceButtonMessage = new List<DiceButton>();
         CalculateScore score = new CalculateScore();
         public List<TextBox> textBoxList1 = new List<TextBox>();
         public List<TextBox> textBoxList2 = new List<TextBox>();
@@ -30,6 +30,7 @@ namespace Project_Yatzee
         {
             InitializeComponent();
             CheckForIllegalCrossThreadCalls = false;
+
         }
 
         public void CreateButtonList()
@@ -298,6 +299,15 @@ namespace Project_Yatzee
         {
             scoreTable.TotalUpperScore += displayScore;
             tableLayoutPanel1.Controls[6].Text = scoreTable.TotalUpperScore.ToString();
+
+
+            if (scoreTable.TotalUpperScore >= 63)
+            {
+                tableLayoutPanel1.Controls[7].Text = "50";
+                CalculateTotal(50);
+                scoreTable.Row = 7;
+            }
+            clientPlayer.Send(scoreTable);
         }
 
         private void buttonFullHouse_Click(object sender, EventArgs e)
@@ -372,13 +382,27 @@ namespace Project_Yatzee
 
         private void buttonBonus_Click(object sender, EventArgs e)
         {
-            if (scoreTable.TotalUpperScore >= 63)
-            {
-                tableLayoutPanel1.Controls[7].Text = "50";
-                CalculateTotal(50);
-                scoreTable.Row = 7;
-            }
-            clientPlayer.Send(scoreTable);
+        }
+
+        private void CheckWhoWins()
+        {
+
+            int resultPlayer = Convert.ToInt32(textBoxList1[17]);
+            int resultOpponent = Convert.ToInt32(textBoxList2[17]);
+
+
+            //if (textBoxList1.)
+            //{
+
+            //}
+
+            if (resultPlayer > resultOpponent)
+                MessageBox.Show("You won!");
+            else if (resultPlayer == resultOpponent)
+                MessageBox.Show("It's a draw!");
+            else
+                MessageBox.Show("You lose!");
+
         }
     }
 }

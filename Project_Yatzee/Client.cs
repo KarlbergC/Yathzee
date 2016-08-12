@@ -62,8 +62,6 @@ namespace Project_Yatzee
                 w.Write(jSonString);
                 w.Flush();
                 DisablePanelContents(_form1);
-               
-
             }
             catch (Exception ex)
             {
@@ -95,7 +93,6 @@ namespace Project_Yatzee
                     {
                         MessageBox.Show(ex.Message);
                     }
-
                 }
             }
             catch (Exception ex)
@@ -107,7 +104,6 @@ namespace Project_Yatzee
 
         private void UpdateList(ScoreTable temp)
         {
-
             TextBox tempBox = _form1.textBoxList2.ElementAt(temp.Row);
             tempBox.Invoke(new Action(() => tempBox.Text = temp.SingleScoreValue.ToString()));
             TextBox tempBox2 = _form1.textBoxList2.ElementAt(6);
