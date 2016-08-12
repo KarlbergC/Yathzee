@@ -19,6 +19,7 @@ namespace Network_server
         {
             tcpClient = c;
             myServer = server;
+            _remainingMoveCounter = remainingMoveCounter;
         }
 
         public void Run()
