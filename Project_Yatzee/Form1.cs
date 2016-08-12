@@ -68,8 +68,6 @@ namespace Project_Yatzee
                     button.Value = rnd.Next(1, 7);
                     Dice dice = new Dice();
                     button.Text = button.Value.ToString();
-                    clientPlayer.EnabledPanelContents(this, true);
-
                 }
             }
         }

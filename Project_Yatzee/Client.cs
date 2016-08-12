@@ -61,8 +61,7 @@ namespace Project_Yatzee
                 string jSonString = JsonConvert.SerializeObject(scoreTableMessage);
                 w.Write(jSonString);
                 w.Flush();
-
-                EnabledPanelContents(_form1, true);
+                DisablePanelContents(_form1);
             }
             catch (Exception ex)
             {
@@ -87,8 +86,7 @@ namespace Project_Yatzee
                         {
                             ScoreTable temp = o as ScoreTable;
                             UpdateList(temp);
-                            EnabledPanelContents(_form1, false);
-
+                            EnablePanelContents(_form1);
                             //uppdatera listan
                         }
 
@@ -127,17 +125,20 @@ namespace Project_Yatzee
             w.Flush();
         }
 
-        public void EnabledPanelContents(Form1 form1, bool enabled)
+        public void DisablePanelContents(Form1 form1)
         {
-
             foreach (var item in form1.Controls)
             {
                 ((Control)item).Enabled = false;
             }
-            //foreach (Control ctrl in form1.Controls)
-            //{
-            //    ctrl.Enabled = enabled;
-            //}
+        }
+
+        public void EnablePanelContents(Form1 form1)
+        {
+            foreach (var item in form1.Controls)
+            {
+                ((Control)item).Enabled = true;
+            }
         }
     }
 }
