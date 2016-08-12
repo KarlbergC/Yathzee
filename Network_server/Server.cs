@@ -33,8 +33,6 @@ namespace Network_server
                     clientThread.Start();
                     Console.WriteLine("Client connected " + clients.Count());
                 }
-                TcpClient client = listener.EndAcceptTcpClient();
-                client.Close();
                 listener.Stop();
             }
             catch (Exception ex)
