@@ -129,10 +129,15 @@ namespace Project_Yatzee
 
         public void EnabledPanelContents(Form1 form1, bool enabled)
         {
-            foreach (Control ctrl in form1.Controls)
+
+            foreach (var item in form1.Controls)
             {
-                ctrl.Enabled = enabled;
+                ((Control)item).Enabled = false;
             }
+            //foreach (Control ctrl in form1.Controls)
+            //{
+            //    ctrl.Enabled = enabled;
+            //}
         }
     }
 }
