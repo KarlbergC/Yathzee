@@ -31,8 +31,10 @@ namespace Network_server
                     clients.Add(newClient);
                     Thread clientThread = new Thread(newClient.Run);
                     clientThread.Start();
+                    Console.WriteLine("Client connected " + clients.Count());
                 }
-                
+                TcpClient client = default(TcpClient);
+                client.Close();
                 listener.Stop();
             }
             catch (Exception ex)
