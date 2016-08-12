@@ -66,6 +66,10 @@ namespace Network_server
                     w.Write("Sorry, you are alone...");
                     w.Flush();
                 }
+                else if (clients.Count()>2)
+                {
+
+                }
             }
         }
     }
