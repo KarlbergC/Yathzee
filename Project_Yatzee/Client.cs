@@ -86,13 +86,13 @@ namespace Project_Yatzee
                         {
                             ScoreTable temp = o as ScoreTable;
                             UpdateList(temp);
+                            EnablePanelContents(_form1);
                         }
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
-
+                        MessageBox.Show(ex.Message);
                     }
-
                 }
             }
             catch (Exception ex)
@@ -104,8 +104,6 @@ namespace Project_Yatzee
 
         private void UpdateList(ScoreTable temp)
         {
-            EnablePanelContents(_form1);
-
             TextBox tempBox = _form1.textBoxList2.ElementAt(temp.Row);
             tempBox.Invoke(new Action(() => tempBox.Text = temp.SingleScoreValue.ToString()));
             TextBox tempBox2 = _form1.textBoxList2.ElementAt(6);
