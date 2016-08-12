@@ -62,6 +62,7 @@ namespace Project_Yatzee
                 w.Write(jSonString);
                 w.Flush();
                 DisablePanelContents(_form1);
+                EnablePanelContents(_form1);
             }
             catch (Exception ex)
             {
@@ -72,7 +73,6 @@ namespace Project_Yatzee
         private void Listen()
         {
             string message = "";
-            EnablePanelContents(_form1);
             try
             {
                 while (message != "quit")
