@@ -72,6 +72,7 @@ namespace Project_Yatzee
         private void Listen()
         {
             string message = "";
+            EnablePanelContents(_form1);
             try
             {
                 while (message != "quit")
@@ -86,10 +87,7 @@ namespace Project_Yatzee
                         {
                             ScoreTable temp = o as ScoreTable;
                             UpdateList(temp);
-                            EnablePanelContents(_form1);
-                            //uppdatera listan
                         }
-
                     }
                     catch (Exception)
                     {
