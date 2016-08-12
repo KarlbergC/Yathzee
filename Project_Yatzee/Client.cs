@@ -40,7 +40,7 @@ namespace Project_Yatzee
 
         public void Start()
         {
-            client = new TcpClient("192.168.220.107", 5000);
+            client = new TcpClient("192.168.220.109", 5000);
 
             //Thread listenerThread = new Thread(SendMessage);
             //listenerThread.Start();
@@ -62,8 +62,7 @@ namespace Project_Yatzee
                 w.Write(jSonString);
                 w.Flush();
 
-                //if (message.Equals("quit"))
-                //    client.Close();
+                EnabledPanelContents(_form1, true);
             }
             catch (Exception ex)
             {
@@ -88,6 +87,7 @@ namespace Project_Yatzee
                         {
                             ScoreTable temp = o as ScoreTable;
                             UpdateList(temp);
+                            
                             //uppdatera listan
                         }
 
@@ -124,6 +124,14 @@ namespace Project_Yatzee
             BinaryWriter w = new BinaryWriter(n);
             w.Write("Hejsan");
             w.Flush();
+        }
+
+        private void EnabledPanelContents(Form1 form1, bool enabled)
+        {
+            foreach (Control ctrl in form1.Controls)
+            {
+                ctrl.Enabled = enabled;
+            }
         }
     }
 }
