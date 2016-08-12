@@ -97,7 +97,12 @@ namespace Project_Yatzee
                             MessageBox.Show(ex.Message);
                         }
                     }
+                    else
+                    {
+                        MessageBox.Show(message);
+                    }
                 }
+
             }
             catch (Exception ex)
             {
