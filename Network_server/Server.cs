@@ -26,10 +26,18 @@ namespace Network_server
                 while (true)
                 {
                     TcpClient c = listener.AcceptTcpClient();
+                    if (clients.Count<3)
+                    {
                     ClientHandler newClient = new ClientHandler(c, this);
                     clients.Add(newClient);
                     Thread clientThread = new Thread(newClient.Run);
                     clientThread.Start();
+                    }
+                    else
+                    {
+                        listener.Server.Disconnect(true);
+                        listener.Stop();
+                    }
                 }
             }
             catch (Exception ex)
