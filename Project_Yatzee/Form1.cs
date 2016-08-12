@@ -29,6 +29,7 @@ namespace Project_Yatzee
         public Form1()
         {
             InitializeComponent();
+            CheckForIllegalCrossThreadCalls = false;
         }
 
         public void CreateButtonList()
