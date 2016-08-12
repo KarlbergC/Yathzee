@@ -127,7 +127,7 @@ namespace Project_Yatzee
             w.Flush();
         }
 
-        private void EnabledPanelContents(Form1 form1, bool enabled)
+        public void EnabledPanelContents(Form1 form1, bool enabled)
         {
             foreach (Control ctrl in form1.Controls)
             {
