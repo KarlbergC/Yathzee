@@ -34,7 +34,6 @@ namespace Project_Yatzee
         public void CreateButtonList()
         {
             clientPlayer.diceButtonMessage.Add(buttonDice1);
-            clientPlayer.diceButtonMessage.Add(buttonDice1);
             clientPlayer.diceButtonMessage.Add(buttonDice2);
             clientPlayer.diceButtonMessage.Add(buttonDice3);
             clientPlayer.diceButtonMessage.Add(buttonDice4);
