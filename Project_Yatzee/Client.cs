@@ -87,14 +87,15 @@ namespace Project_Yatzee
                         {
                             ScoreTable temp = o as ScoreTable;
                             UpdateList(temp);
-                            
+                            EnabledPanelContents(_form1, false);
+
                             //uppdatera listan
                         }
 
                     }
                     catch (Exception)
                     {
-                       
+
                     }
 
                 }
