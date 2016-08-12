@@ -14,7 +14,7 @@ namespace Project_Yatzee.GameLogic
         public int TotalUpperScore { get; set; }
         public int Row { get; set; }
 
-        public int _remainingMoveCounter { get; set; } = 13;
+      
 
     }
 }

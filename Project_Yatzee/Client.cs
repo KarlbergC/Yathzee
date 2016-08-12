@@ -58,7 +58,7 @@ namespace Project_Yatzee
             {
                 NetworkStream n = client.GetStream();
                 BinaryWriter w = new BinaryWriter(n);
-                scoreTableMessage._remainingMoveCounter--;
+            
                 string jSonString = JsonConvert.SerializeObject(scoreTableMessage);
                 w.Write(jSonString);
                 w.Flush();
