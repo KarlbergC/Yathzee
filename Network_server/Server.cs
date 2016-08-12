@@ -36,7 +36,7 @@ namespace Network_server
                 }
 
                 //MessageBox.Show("Sorry the game is full, try again later!");
-                
+
                 listener.Stop();
             }
             catch (Exception ex)
@@ -55,32 +55,25 @@ namespace Network_server
             throw new NotImplementedException();
         }
 
-        internal void Broadcast(ClientHandler client, string message)
+        internal void Broadcast(ClientHandler fromClient, string message)
         {
-            foreach (ClientHandler tmpClient in clients)
+            fromClient._remainingMoveCounter--;
+            Console.WriteLine(fromClient._remainingMoveCounter);
+            foreach (ClientHandler toClient in clients)
             {
-                if (tmpClient != client)
+                if (toClient != fromClient)
                 {
-                    NetworkStream n = tmpClient.tcpClient.GetStream();
+                    NetworkStream n = toClient.tcpClient.GetStream();
                     BinaryWriter w = new BinaryWriter(n);
                     w.Write(message);
                     w.Flush();
                 }
-                else if (tmpClient == client)
-                {
-                    client._remainingMoveCounter--;
-                    Console.WriteLine(client._remainingMoveCounter);
-                }
                 else if (clients.Count() == 1)
                 {
-                    NetworkStream n = tmpClient.tcpClient.GetStream();
+                    NetworkStream n = toClient.tcpClient.GetStream();
                     BinaryWriter w = new BinaryWriter(n);
                     w.Write("Sorry, you are alone...");
                     w.Flush();
-                }
-                else if (clients.Count() > 2)
-                {
-
                 }
             }
         }
