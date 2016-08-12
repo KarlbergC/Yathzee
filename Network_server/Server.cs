@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -55,9 +56,18 @@ namespace Network_server
             throw new NotImplementedException();
         }
 
+        static int GiveMeTheTotalScore(string json)
+        {
+            JObject o = JObject.Parse(json);
+            string totalScore = (string)o.SelectToken("TotalScore");
+            return Convert.ToInt32(totalScore);
+        }
         internal void Broadcast(ClientHandler fromClient, string message)
         {
+
             Console.WriteLine(fromClient._remainingMoveCounter);
+            fromClient.TotalScore = GiveMeTheTotalScore(message);
+            Console.WriteLine(fromClient.TotalScore);
             if (clients.Any<ClientHandler>(x => x._remainingMoveCounter != 0))
             {
                 foreach (ClientHandler toClient in clients)
@@ -71,11 +81,12 @@ namespace Network_server
                         fromClient._remainingMoveCounter--;
                         if (clients.All<ClientHandler>(x => x._remainingMoveCounter == 0))
                         {
-
+                            CheckTotalScore(clients);
                             Console.WriteLine("Slut på spelet");
 
                         }
                     }
+
                     else if (clients.Count() == 1)
                     {
                         NetworkStream n = toClient.tcpClient.GetStream();
@@ -95,6 +106,11 @@ namespace Network_server
                     w.Flush();
                 }
             }
+        }
+
+        private void CheckTotalScore(List<ClientHandler> clients)
+        {
+            throw new NotImplementedException();
         }
     }
 }
