@@ -34,7 +34,9 @@ namespace Network_server
                     clientThread.Start();
                     Console.WriteLine("Client connected " + clients.Count());
                 }
-                MessageBox.Show("Sorry the game is full, try again later!");
+
+                //MessageBox.Show("Sorry the game is full, try again later!");
+                
                 listener.Stop();
             }
             catch (Exception ex)
@@ -63,6 +65,11 @@ namespace Network_server
                     BinaryWriter w = new BinaryWriter(n);
                     w.Write(message);
                     w.Flush();
+                }
+                else if (tmpClient == client)
+                {
+                    client._remainingMoveCounter--;
+                    Console.WriteLine(client._remainingMoveCounter);
                 }
                 else if (clients.Count() == 1)
                 {
