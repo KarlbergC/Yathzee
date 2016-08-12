@@ -300,14 +300,13 @@ namespace Project_Yatzee
             scoreTable.TotalUpperScore += displayScore;
             tableLayoutPanel1.Controls[6].Text = scoreTable.TotalUpperScore.ToString();
 
-
             if (scoreTable.TotalUpperScore >= 63)
             {
                 tableLayoutPanel1.Controls[7].Text = "50";
                 CalculateTotal(50);
                 scoreTable.Row = 7;
             }
-            clientPlayer.Send(scoreTable);
+           // clientPlayer.Send(scoreTable);
         }
 
         private void buttonFullHouse_Click(object sender, EventArgs e)
