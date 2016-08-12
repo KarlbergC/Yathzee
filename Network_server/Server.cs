@@ -110,7 +110,6 @@ namespace Network_server
 
         private void CheckTotalScore(List<ClientHandler> clients)
         {
-            throw new NotImplementedException();
         }
     }
 }
