@@ -7,6 +7,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Network_server
 {
@@ -33,6 +34,7 @@ namespace Network_server
                     clientThread.Start();
                     Console.WriteLine("Client connected " + clients.Count());
                 }
+                MessageBox.Show("Sorry the game is full, try again later!");
                 listener.Stop();
             }
             catch (Exception ex)
