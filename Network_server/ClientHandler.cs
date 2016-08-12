@@ -14,6 +14,7 @@ namespace Network_server
         private Server myServer;
         public string userName;
         public int _remainingMoveCounter;
+        public int TotalScore { get; set; }
 
         public ClientHandler(TcpClient c, Server server, int remainingMoveCounter = 3)
         {

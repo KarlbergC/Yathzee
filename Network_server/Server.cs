@@ -71,6 +71,7 @@ namespace Network_server
                         fromClient._remainingMoveCounter--;
                         if (clients.All<ClientHandler>(x => x._remainingMoveCounter == 0))
                         {
+
                             Console.WriteLine("Slut på spelet");
 
                         }
