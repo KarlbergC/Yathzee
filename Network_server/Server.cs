@@ -23,7 +23,7 @@ namespace Network_server
             {
                 listener.Start();
 
-                while (clients.Count < 3)
+                while (clients.Count < 2)
                 {
                     TcpClient c = listener.AcceptTcpClient();
 
@@ -33,7 +33,7 @@ namespace Network_server
                     clientThread.Start();
                     Console.WriteLine("Client connected " + clients.Count());
                 }
-                TcpClient client = default(TcpClient);
+                TcpClient client = listener.EndAcceptTcpClient();
                 client.Close();
                 listener.Stop();
             }
