@@ -32,6 +32,8 @@ namespace Network_server
                     Thread clientThread = new Thread(newClient.Run);
                     clientThread.Start();
                 }
+                
+                listener.Stop();
             }
             catch (Exception ex)
             {
