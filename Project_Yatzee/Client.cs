@@ -80,23 +80,23 @@ namespace Project_Yatzee
                     NetworkStream n = client.GetStream();
                     message = new BinaryReader(n).ReadString();
                     MessageBox.Show(message);
-                    try
+                    if (!message.ToLower().StartsWith("you"))
                     {
-                        object o = JsonConvert.DeserializeObject<ScoreTable>(message);
-                        if (o is ScoreTable)
-                        {
-                            ScoreTable temp = o as ScoreTable;
-                            UpdateList(temp);
-                            EnablePanelContents(_form1);
-                        }
-                        else if (true)
-                        {
 
+                        try
+                        {
+                            object o = JsonConvert.DeserializeObject<ScoreTable>(message);
+                            if (o is ScoreTable)
+                            {
+                                ScoreTable temp = o as ScoreTable;
+                                UpdateList(temp);
+                                EnablePanelContents(_form1);
+                            }
                         }
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
                     }
                 }
             }
