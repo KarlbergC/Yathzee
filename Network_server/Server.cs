@@ -57,22 +57,40 @@ namespace Network_server
 
         internal void Broadcast(ClientHandler fromClient, string message)
         {
-            fromClient._remainingMoveCounter--;
             Console.WriteLine(fromClient._remainingMoveCounter);
-            foreach (ClientHandler toClient in clients)
+            if (clients.Any<ClientHandler>(x => x._remainingMoveCounter != 0))
             {
-                if (toClient != fromClient)
+                foreach (ClientHandler toClient in clients)
                 {
-                    NetworkStream n = toClient.tcpClient.GetStream();
-                    BinaryWriter w = new BinaryWriter(n);
-                    w.Write(message);
-                    w.Flush();
+                    if (toClient != fromClient)
+                    {
+                        NetworkStream n = toClient.tcpClient.GetStream();
+                        BinaryWriter w = new BinaryWriter(n);
+                        w.Write(message);
+                        w.Flush();
+                        fromClient._remainingMoveCounter--;
+                        if (clients.All<ClientHandler>(x => x._remainingMoveCounter == 0))
+                        {
+                            Console.WriteLine("Slut på spelet");
+
+                        }
+                    }
+                    else if (clients.Count() == 1)
+                    {
+                        NetworkStream n = toClient.tcpClient.GetStream();
+                        BinaryWriter w = new BinaryWriter(n);
+                        w.Write("Sorry, you are alone...");
+                        w.Flush();
+                    }
                 }
-                else if (clients.Count() == 1)
+            }
+            else
+            {
+                foreach (ClientHandler client in clients)
                 {
-                    NetworkStream n = toClient.tcpClient.GetStream();
+                    NetworkStream n = client.tcpClient.GetStream();
                     BinaryWriter w = new BinaryWriter(n);
-                    w.Write("Sorry, you are alone...");
+                    w.Write("Spelet är slut x vann");
                     w.Flush();
                 }
             }

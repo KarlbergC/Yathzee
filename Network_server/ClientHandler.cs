@@ -15,7 +15,7 @@ namespace Network_server
         public string userName;
         public int _remainingMoveCounter;
 
-        public ClientHandler(TcpClient c, Server server, int remainingMoveCounter = 13)
+        public ClientHandler(TcpClient c, Server server, int remainingMoveCounter = 3)
         {
             tcpClient = c;
             myServer = server;
