@@ -23,21 +23,14 @@ namespace Network_server
             {
                 listener.Start();
 
-                while (true)
+                while (clients.Count < 3)
                 {
                     TcpClient c = listener.AcceptTcpClient();
-                    if (clients.Count<3)
-                    {
+
                     ClientHandler newClient = new ClientHandler(c, this);
                     clients.Add(newClient);
                     Thread clientThread = new Thread(newClient.Run);
                     clientThread.Start();
-                    }
-                    else
-                    {
-                        listener.Server.Disconnect(true);
-                        listener.Stop();
-                    }
                 }
             }
             catch (Exception ex)
@@ -74,7 +67,7 @@ namespace Network_server
                     w.Write("Sorry, you are alone...");
                     w.Flush();
                 }
-                else if (clients.Count()>2)
+                else if (clients.Count() > 2)
                 {
 
                 }
