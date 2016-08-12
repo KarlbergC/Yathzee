@@ -40,7 +40,7 @@ namespace Project_Yatzee
 
         public void Start()
         {
-            client = new TcpClient("192.168.220.107", 5000);
+            client = new TcpClient("192.168.220.109", 5000);
 
             //Thread listenerThread = new Thread(SendMessage);
             //listenerThread.Start();
@@ -61,9 +61,7 @@ namespace Project_Yatzee
                 string jSonString = JsonConvert.SerializeObject(scoreTableMessage);
                 w.Write(jSonString);
                 w.Flush();
-
-                //if (message.Equals("quit"))
-                //    client.Close();
+                DisablePanelContents(_form1);
             }
             catch (Exception ex)
             {
@@ -88,13 +86,11 @@ namespace Project_Yatzee
                         {
                             ScoreTable temp = o as ScoreTable;
                             UpdateList(temp);
-                            //uppdatera listan
                         }
-
                     }
                     catch (Exception)
                     {
-                       
+
                     }
 
                 }
@@ -108,6 +104,8 @@ namespace Project_Yatzee
 
         private void UpdateList(ScoreTable temp)
         {
+            EnablePanelContents(_form1);
+
             TextBox tempBox = _form1.textBoxList2.ElementAt(temp.Row);
             tempBox.Invoke(new Action(() => tempBox.Text = temp.SingleScoreValue.ToString()));
             TextBox tempBox2 = _form1.textBoxList2.ElementAt(6);
@@ -124,6 +122,22 @@ namespace Project_Yatzee
             BinaryWriter w = new BinaryWriter(n);
             w.Write("Hejsan");
             w.Flush();
+        }
+
+        public void DisablePanelContents(Form1 form1)
+        {
+            foreach (var item in form1.Controls)
+            {
+                ((Control)item).Enabled = false;
+            }
+        }
+
+        public void EnablePanelContents(Form1 form1)
+        {
+            foreach (var item in form1.Controls)
+            {
+                ((Control)item).Enabled = true;
+            }
         }
     }
 }
