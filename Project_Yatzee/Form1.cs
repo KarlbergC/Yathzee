@@ -260,22 +260,22 @@ namespace Project_Yatzee
                     switch (button.Value)
                     {
                         case 1:
-                            button.Image = Image.FromFile(@"C:\Users\Administrator\Source\Repos\Yathzee4\Dice\die1.jpg");
+                            button.Image = Image.FromFile(@"C:\Users\Administrator\Source\Repos\Yathzee4\Project_Yatzee\Images\die1.jpg");
                             break;
                         case 2:
-                            button.Image = Image.FromFile(@"C:\Users\Administrator\Source\Repos\Yathzee4\Dice\die2.jpg");
+                            button.Image = Image.FromFile(@"C:\Users\Administrator\Source\Repos\Yathzee4\Project_Yatzee\Images\die2.jpg");
                             break;
                         case 3:
-                            button.Image = Image.FromFile(@"C:\Users\Administrator\Source\Repos\Yathzee4\Dice\die3.jpg");
+                            button.Image = Image.FromFile(@"C:\Users\Administrator\Source\Repos\Yathzee4\Project_Yatzee\Images\die3.jpg");
                             break;
                         case 4:
-                            button.Image = Image.FromFile(@"C:\Users\Administrator\Source\Repos\Yathzee4\Dice\die4.jpg");
+                            button.Image = Image.FromFile(@"C:\Users\Administrator\Source\Repos\Yathzee4\Project_Yatzee\Images\die4.jpg");
                             break;
                         case 5:
-                            button.Image = Image.FromFile(@"C:\Users\Administrator\Source\Repos\Yathzee4\Dice\die5.jpg");
+                            button.Image = Image.FromFile(@"C:\Users\Administrator\Source\Repos\Yathzee4\Project_Yatzee\Images\die5.jpg");
                             break;
                         case 6:
-                            button.Image = Image.FromFile(@"C:\Users\Administrator\Source\Repos\Yathzee4\Dice\die6.jpg");
+                            button.Image = Image.FromFile(@"C:\Users\Administrator\Source\Repos\Yathzee4\Project_Yatzee\Images\die6.jpg");
                             break;
                     }
                 }
