@@ -70,17 +70,13 @@ namespace Network_server
             string userName = (string)o.SelectToken("UserName");
             return userName;
         }
-        static void SendHighscore()
-        {
-            //int winnerHighscore = GiveMeTheTotalScore();
-            //string winnerUserName = GiveMeUserName();
-        }
 
         internal void Broadcast(ClientHandler fromClient, string message)
         {
             if (fromClient.userName == null)
             {
                 fromClient.userName = GiveMeUserName(message);
+
             }
 
             Console.WriteLine(fromClient._remainingMoveCounter);
@@ -109,15 +105,13 @@ namespace Network_server
 
                                 if (client == winner)
                                 {
-                                    //int winnerScore = GiveMeTheTotalScore(message);
-                                    //string winnerUserName = GiveMeUserName(message);
-                                    //Console.WriteLine(winnerUserName + winnerScore);
-                                    w.Write($"you {client.userName} is the WINNER!");
+                                    SaveHighscore(client.userName,client.TotalScore);
+                                    w.Write($"The winner is {client.userName}!");
                                     w.Flush();
                                 }
                                 else
                                 {
-                                    w.Write("You're the LOOSER! You SUCK!!!");
+                                    w.Write($"The winner is {client.userName}! Better luck next time.");
                                     w.Flush();
                                 }
                             }
@@ -145,6 +139,11 @@ namespace Network_server
             //        w.Flush();
             //    }
             //}
+        }
+
+        private void SaveHighscore(string userName, int highScore)
+        {
+            SQL.AddNewHighscore(userName, highScore);
         }
 
         private ClientHandler GetWinner(List<ClientHandler> clients)

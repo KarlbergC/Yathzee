@@ -75,11 +75,11 @@ namespace Project_Yatzee
             string message = "";
             try
             {
-                while (!message.ToLower().StartsWith("you"))
+                while (!message.ToLower().StartsWith("the"))
                 {
                     NetworkStream n = client.GetStream();
                     message = new BinaryReader(n).ReadString();
-                    if (!message.ToLower().StartsWith("you"))
+                    if (!message.ToLower().StartsWith("the"))
                     {
                         try
                         {
