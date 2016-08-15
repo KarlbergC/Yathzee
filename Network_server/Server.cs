@@ -72,8 +72,8 @@ namespace Network_server
         }
         static void SendHighscore()
         {
-            int winnerHighscore = GiveMeTheTotalScore();
-            string winnerUserName = GiveMeUserName();
+            //int winnerHighscore = GiveMeTheTotalScore();
+            //string winnerUserName = GiveMeUserName();
         }
 
         internal void Broadcast(ClientHandler fromClient, string message)
