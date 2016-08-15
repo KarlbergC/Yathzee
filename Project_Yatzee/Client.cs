@@ -108,7 +108,7 @@ namespace Project_Yatzee
                 throw;
             }
         }
-
+         
         private void UpdateList(ScoreTable temp)
         {
             Label tempLabel = _form1.opponentUserName;
