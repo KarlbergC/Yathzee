@@ -50,16 +50,16 @@
             this.buttonTotal = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.labelPlayer = new System.Windows.Forms.Label();
+            this.labelOpponent = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.button7 = new System.Windows.Forms.Button();
             this.buttonDice5 = new Project_Yatzee.DiceButton();
             this.buttonDice4 = new Project_Yatzee.DiceButton();
             this.buttonDice3 = new Project_Yatzee.DiceButton();
             this.buttonDice2 = new Project_Yatzee.DiceButton();
             this.buttonDice1 = new Project_Yatzee.DiceButton();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button7 = new System.Windows.Forms.Button();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -306,6 +306,55 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(61, 379);
             this.tableLayoutPanel2.TabIndex = 2;
             // 
+            // labelPlayer
+            // 
+            this.labelPlayer.AutoSize = true;
+            this.labelPlayer.Location = new System.Drawing.Point(115, 26);
+            this.labelPlayer.Name = "labelPlayer";
+            this.labelPlayer.Size = new System.Drawing.Size(36, 13);
+            this.labelPlayer.TabIndex = 4;
+            this.labelPlayer.Text = "Player";
+            // 
+            // labelOpponent
+            // 
+            this.labelOpponent.AutoSize = true;
+            this.labelOpponent.Location = new System.Drawing.Point(246, 25);
+            this.labelOpponent.Name = "labelOpponent";
+            this.labelOpponent.Size = new System.Drawing.Size(54, 13);
+            this.labelOpponent.TabIndex = 4;
+            this.labelOpponent.Text = "Opponent";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.checkBox1);
+            this.groupBox1.Controls.Add(this.button7);
+            this.groupBox1.Enabled = false;
+            this.groupBox1.Location = new System.Drawing.Point(459, 199);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(200, 100);
+            this.groupBox1.TabIndex = 5;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "groupBox1";
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(59, 60);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(80, 17);
+            this.checkBox1.TabIndex = 1;
+            this.checkBox1.Text = "checkBox1";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(59, 30);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(75, 23);
+            this.button7.TabIndex = 0;
+            this.button7.Text = "button7";
+            this.button7.UseVisualStyleBackColor = true;
+            // 
             // buttonDice5
             // 
             this.buttonDice5.HoldState = false;
@@ -367,55 +416,6 @@
             this.buttonDice1.Click += new System.EventHandler(this.buttonDice_Click);
             this.buttonDice1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.buttonDice1_MouseClick);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(115, 26);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(36, 13);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Player";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(246, 25);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(54, 13);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Opponent";
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.checkBox1);
-            this.groupBox1.Controls.Add(this.button7);
-            this.groupBox1.Enabled = false;
-            this.groupBox1.Location = new System.Drawing.Point(459, 199);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(200, 100);
-            this.groupBox1.TabIndex = 5;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
-            // 
-            // button7
-            // 
-            this.button7.Location = new System.Drawing.Point(59, 30);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(75, 23);
-            this.button7.TabIndex = 0;
-            this.button7.Text = "button7";
-            this.button7.UseVisualStyleBackColor = true;
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(59, 60);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(80, 17);
-            this.checkBox1.TabIndex = 1;
-            this.checkBox1.Text = "checkBox1";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -423,8 +423,8 @@
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(671, 469);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.labelOpponent);
+            this.Controls.Add(this.labelPlayer);
             this.Controls.Add(this.buttonTotal);
             this.Controls.Add(this.buttonLowerTotal);
             this.Controls.Add(this.buttonYatzee);
@@ -490,8 +490,8 @@
         private System.Windows.Forms.Button buttonTotal;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label labelPlayer;
+        private System.Windows.Forms.Label labelOpponent;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Button button7;
