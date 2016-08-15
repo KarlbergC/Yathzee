@@ -32,8 +32,9 @@ namespace Project_Yatzee
 
         private void Form2_Load(object sender, EventArgs e)
         {
-            var tmpList = SQLUtils.LoadHighscores();
-
+            var tmpList = SQLUtils.LoadHighscores()
+                .OrderByDescending(o => o.HighScore);
+            
             foreach (var highscore in tmpList)
             {
                 listBoxHighscores.Items.Add(highscore.HighScore + ", " + highscore.UserName);

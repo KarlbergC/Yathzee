@@ -111,8 +111,9 @@ namespace Project_Yatzee
          
         private void UpdateList(ScoreTable temp)
         {
+            Label tempLabel = _form1.opponentUserName;
             //Label tempLabel = _form1.opponentUserName;
-            //tempLabel.Invoke(new Action(() => tempLabel.Text = temp.UserName));
+            tempLabel.Invoke(new Action(() => tempLabel.Text = temp.UserName));
 
             TextBox tempBox = _form1.textBoxList2.ElementAt(temp.Row);
             tempBox.Invoke(new Action(() => tempBox.Text = temp.SingleScoreValue.ToString()));
