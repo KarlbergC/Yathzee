@@ -78,6 +78,10 @@ namespace Network_server
 
         internal void Broadcast(ClientHandler fromClient, string message)
         {
+            if (fromClient.userName == null)
+            {
+                fromClient.userName = GiveMeUserName(message);
+            }
 
             Console.WriteLine(fromClient._remainingMoveCounter);
             fromClient.TotalScore = GiveMeTheTotalScore(message);
@@ -105,10 +109,10 @@ namespace Network_server
 
                                 if (client == winner)
                                 {
-                                    int winnerScore = GiveMeTheTotalScore(message);
-                                    string winnerUserName = GiveMeUserName(message);
-                                    Console.WriteLine(winnerUserName + winnerScore);
-                                    w.Write("You're the WINNER! You're the BEST!!!");
+                                    //int winnerScore = GiveMeTheTotalScore(message);
+                                    //string winnerUserName = GiveMeUserName(message);
+                                    //Console.WriteLine(winnerUserName + winnerScore);
+                                    w.Write($"{client.userName} is the WINNER!");
                                     w.Flush();
                                 }
                                 else
@@ -145,9 +149,12 @@ namespace Network_server
 
         private ClientHandler GetWinner(List<ClientHandler> clients)
         {
-            return clients
+            ClientHandler tmpClient = clients
                   .OrderByDescending(o => o.TotalScore)
                   .First();
+
+            return tmpClient;
         }
+
     }
 }
