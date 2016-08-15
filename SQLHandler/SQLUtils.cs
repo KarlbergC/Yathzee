@@ -15,7 +15,7 @@ namespace SQLHandler
         {
             List<Highscore> highscores = new List<Highscore>();
             SqlConnection myConnection = new SqlConnection(CON_STR);
-            SqlCommand myCommand = new SqlCommand("select * from Highscore order by Score", myConnection);
+            SqlCommand myCommand = new SqlCommand("select * from Highscores order by HighScore", myConnection);
 
             try
             {
@@ -25,7 +25,7 @@ namespace SQLHandler
                 while (myReader.Read())
                 {
                     string userName = myReader["UserName"].ToString();
-                    int highScore = Convert.ToInt32(myReader["Score"]);
+                    int highScore = Convert.ToInt32(myReader["HighScore"]);
 
                     highscores.Add(new Highscore(userName, highScore));
                 }
@@ -44,7 +44,7 @@ namespace SQLHandler
         public static void AddNewHighscore(string username, int highscore)
         {
             SqlConnection myConnection = new SqlConnection(CON_STR);
-            SqlCommand command = new SqlCommand($"insert into Highscore (UserName,Score) values('{username}', '{highscore}')", myConnection);
+            SqlCommand command = new SqlCommand($"insert into Highscores (UserName,HighScore) values('{username}', '{highscore}')", myConnection);
 
             try
             {
