@@ -131,6 +131,7 @@ namespace Project_Yatzee
             BinaryWriter w = new BinaryWriter(n);
             w.Write("Hejsan");
             w.Flush();
+
         }
 
         public void DisablePanelContents(Form1 form1)
