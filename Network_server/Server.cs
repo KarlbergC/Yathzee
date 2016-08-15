@@ -56,12 +56,26 @@ namespace Network_server
             throw new NotImplementedException();
         }
 
+
         static int GiveMeTheTotalScore(string json)
         {
             JObject o = JObject.Parse(json);
             string totalScore = (string)o.SelectToken("TotalScore");
             return Convert.ToInt32(totalScore);
         }
+
+        static string GiveMeUserName(string json)
+        {
+            JObject o = JObject.Parse(json);
+            string userName = (string)o.SelectToken("UserName");
+            return userName;
+        }
+        static void SendHighscore()
+        {
+            int winnerHighscore = GiveMeTheTotalScore();
+            string winnerUserName = GiveMeUserName();
+        }
+
         internal void Broadcast(ClientHandler fromClient, string message)
         {
 
@@ -91,6 +105,9 @@ namespace Network_server
 
                                 if (client == winner)
                                 {
+                                    int winnerScore = GiveMeTheTotalScore(message);
+                                    string winnerUserName = GiveMeUserName(message);
+                                    Console.WriteLine(winnerUserName + winnerScore);
                                     w.Write("You're the WINNER! You're the BEST!!!");
                                     w.Flush();
                                 }
@@ -128,10 +145,9 @@ namespace Network_server
 
         private ClientHandler GetWinner(List<ClientHandler> clients)
         {
-          return clients
-                .OrderByDescending(o => o.TotalScore)
-                .First();
-            
+            return clients
+                  .OrderByDescending(o => o.TotalScore)
+                  .First();
         }
     }
 }
