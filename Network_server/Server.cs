@@ -112,7 +112,7 @@ namespace Network_server
                                     //int winnerScore = GiveMeTheTotalScore(message);
                                     //string winnerUserName = GiveMeUserName(message);
                                     //Console.WriteLine(winnerUserName + winnerScore);
-                                    w.Write($"{client.userName} is the WINNER!");
+                                    w.Write($"you {client.userName} is the WINNER!");
                                     w.Flush();
                                 }
                                 else
