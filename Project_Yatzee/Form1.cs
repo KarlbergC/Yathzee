@@ -23,7 +23,7 @@ namespace Project_Yatzee
         CalculateScore score = new CalculateScore();
         public List<TextBox> textBoxList1 = new List<TextBox>();
         public List<TextBox> textBoxList2 = new List<TextBox>();
-        public Label opponentUserName;
+        public Label opponentUserName = new Label();
 
         public Form1()
         {
