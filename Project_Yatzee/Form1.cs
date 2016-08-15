@@ -115,7 +115,7 @@ namespace Project_Yatzee
                 scoreTable.SingleScoreValue = compute(clientPlayer.diceButtonMessage);
                 tableLayoutPanel1.Controls[index].Text = scoreTable.SingleScoreValue.ToString();
                 CalulateTotalLower(scoreTable.SingleScoreValue);
-                CalulateTotalUpper(scoreTable.SingleScoreValue);
+                //CalulateTotalUpper(scoreTable.SingleScoreValue);
                 CalculateTotal(scoreTable.SingleScoreValue);
                 scoreTable.Row = index;
                 clientPlayer.Send(scoreTable);
