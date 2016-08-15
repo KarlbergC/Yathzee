@@ -102,7 +102,7 @@ namespace Project_Yatzee
 
             if (diceButton.HoldState)
             {
-                diceButton.BackColor = Color.White;
+                diceButton.BackColor = Color.IndianRed;
 
             }
             else
@@ -256,7 +256,28 @@ namespace Project_Yatzee
                 {
                     button.Value = rnd.Next(1, 7);
                     Dice dice = new Dice();
-                    button.Text = button.Value.ToString();
+
+                    switch (button.Value)
+                    {
+                        case 1:
+                            button.Image = Image.FromFile(@"C:\Users\Administrator\Source\Repos\Yathzee4\Dice\die1.jpg");
+                            break;
+                        case 2:
+                            button.Image = Image.FromFile(@"C:\Users\Administrator\Source\Repos\Yathzee4\Dice\die2.jpg");
+                            break;
+                        case 3:
+                            button.Image = Image.FromFile(@"C:\Users\Administrator\Source\Repos\Yathzee4\Dice\die3.jpg");
+                            break;
+                        case 4:
+                            button.Image = Image.FromFile(@"C:\Users\Administrator\Source\Repos\Yathzee4\Dice\die4.jpg");
+                            break;
+                        case 5:
+                            button.Image = Image.FromFile(@"C:\Users\Administrator\Source\Repos\Yathzee4\Dice\die5.jpg");
+                            break;
+                        case 6:
+                            button.Image = Image.FromFile(@"C:\Users\Administrator\Source\Repos\Yathzee4\Dice\die6.jpg");
+                            break;
+                    }
                 }
             }
         }
