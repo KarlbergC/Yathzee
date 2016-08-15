@@ -106,8 +106,8 @@ namespace Network_server
 
                                 if (client == winner)
                                 {
-                                    SaveHighscore(client.userName,client.TotalScore);
                                     w.Write($"The winner is {client.userName}!");
+                                    SaveHighscore(client.userName,client.TotalScore);
                                     w.Flush();
                                 }
                                 else
