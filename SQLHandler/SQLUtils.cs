@@ -9,7 +9,7 @@ namespace SQLHandler
 {
     public class SQLUtils
     {
-        const string CON_STR = "Data Source=(localdb)\\MsSqlLocalDb;Initial Catalog=Yahtzee;Integrated Security=True;Pooling=False";
+        const string CON_STR = @"Data Source=192.168.220.126;Initial Catalog=Bank;Persist Security Info=True;User ID=Kalle;Password=Password1";
 
         public static List<Highscore> LoadHighscores()
         {
