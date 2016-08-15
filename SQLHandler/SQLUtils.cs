@@ -13,7 +13,7 @@ namespace SQLHandler
 
         public static List<Highscore> LoadHighscores()
         {
-            List<Highscore> highscores = new List<Highscore>();
+            List<Highscore> highscoreList = new List<Highscore>();
             SqlConnection myConnection = new SqlConnection(CON_STR);
             SqlCommand myCommand = new SqlCommand("select * from Highscores order by HighScore", myConnection);
 
@@ -27,7 +27,7 @@ namespace SQLHandler
                     string userName = myReader["UserName"].ToString();
                     int highScore = Convert.ToInt32(myReader["HighScore"]);
 
-                    highscores.Add(new Highscore(userName, highScore));
+                    highscoreList.Add(new Highscore(userName, highScore));
                 }
             }
             catch (Exception)
@@ -38,7 +38,7 @@ namespace SQLHandler
                 myConnection.Close();
             }
 
-            return highscores;
+            return highscoreList;
         }
 
         public static void AddNewHighscore(string username, int highscore)
