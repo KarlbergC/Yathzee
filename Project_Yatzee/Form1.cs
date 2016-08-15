@@ -23,6 +23,7 @@ namespace Project_Yatzee
         CalculateScore score = new CalculateScore();
         public List<TextBox> textBoxList1 = new List<TextBox>();
         public List<TextBox> textBoxList2 = new List<TextBox>();
+        public Label opponentUserName;
 
         public Form1()
         {
@@ -39,7 +40,9 @@ namespace Project_Yatzee
                     scoreTable.UserName = form2.UserName;
                 }
             }
-                clientPlayer = new Client(this);
+            clientPlayer = new Client(this);
+            clientPlayer.Send(scoreTable);
+            labelOpponent = opponentUserName;
             CreateButtonList();
 
             //TextBox Text1 = new TextBox();

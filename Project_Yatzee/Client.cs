@@ -81,7 +81,6 @@ namespace Project_Yatzee
                     message = new BinaryReader(n).ReadString();
                     if (!message.ToLower().StartsWith("you"))
                     {
-
                         try
                         {
                             object o = JsonConvert.DeserializeObject<ScoreTable>(message);
@@ -102,7 +101,6 @@ namespace Project_Yatzee
                         MessageBox.Show(message);
                     }
                 }
-
             }
             catch (Exception ex)
             {
@@ -113,6 +111,8 @@ namespace Project_Yatzee
 
         private void UpdateList(ScoreTable temp)
         {
+            Label tempLabel = _form1.opponentUserName;
+            tempLabel.Invoke(new Action(() => tempLabel.Text = temp.UserName.ToString()));
             TextBox tempBox = _form1.textBoxList2.ElementAt(temp.Row);
             tempBox.Invoke(new Action(() => tempBox.Text = temp.SingleScoreValue.ToString()));
             TextBox tempBox2 = _form1.textBoxList2.ElementAt(6);
