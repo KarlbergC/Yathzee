@@ -41,10 +41,10 @@ namespace Project_Yatzee
                 }
             }
             clientPlayer = new Client(this);
-            clientPlayer.Send(scoreTable);
-            labelOpponent = opponentUserName;
+            //clientPlayer.Send(scoreTable);
             CreateButtonList();
 
+            this.labelOpponent = opponentUserName;
             //TextBox Text1 = new TextBox();
             //tableLayoutPanel1.Controls.Add(Text1, 0, 0);
 

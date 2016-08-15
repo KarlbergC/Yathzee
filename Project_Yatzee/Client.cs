@@ -113,6 +113,7 @@ namespace Project_Yatzee
         {
             Label tempLabel = _form1.opponentUserName;
             tempLabel.Invoke(new Action(() => tempLabel.Text = temp.UserName.ToString()));
+
             TextBox tempBox = _form1.textBoxList2.ElementAt(temp.Row);
             tempBox.Invoke(new Action(() => tempBox.Text = temp.SingleScoreValue.ToString()));
             TextBox tempBox2 = _form1.textBoxList2.ElementAt(6);
