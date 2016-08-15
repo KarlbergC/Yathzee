@@ -40,7 +40,7 @@ namespace Project_Yatzee
 
         public void Start()
         {
-            client = new TcpClient("192.168.220.109", 5000);
+            client = new TcpClient("192.168.220.126", 5000);
 
             //Thread listenerThread = new Thread(SendMessage);
             //listenerThread.Start();
