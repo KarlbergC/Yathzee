@@ -107,6 +107,14 @@
       <Name>SQLHandler</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Images\die1.jpg" />
+    <Content Include="Images\die2.jpg" />
+    <Content Include="Images\die3.jpg" />
+    <Content Include="Images\die4.jpg" />
+    <Content Include="Images\die5.jpg" />
+    <Content Include="Images\die6.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
