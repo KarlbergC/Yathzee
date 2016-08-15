@@ -102,7 +102,7 @@
     <Folder Include="Client\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Documents\Visual Studio 2015\Projects\SQLHandler\SQLHandler\SQLHandler.csproj">
+    <ProjectReference Include="..\SQLHandler\SQLHandler.csproj">
       <Project>{9fb07a0e-1b3a-4a6d-9e65-ea47aba83130}</Project>
       <Name>SQLHandler</Name>
     </ProjectReference>
