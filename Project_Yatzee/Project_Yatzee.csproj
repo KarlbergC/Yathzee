@@ -101,6 +101,12 @@
   <ItemGroup>
     <Folder Include="Client\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Documents\Visual Studio 2015\Projects\SQLHandler\SQLHandler\SQLHandler.csproj">
+      <Project>{9fb07a0e-1b3a-4a6d-9e65-ea47aba83130}</Project>
+      <Name>SQLHandler</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project_Yatzee", "Project_Y
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Network_server", "Network_server\Network_server.csproj", "{B4FABBA3-8B6A-4256-8EE3-1458086A0E54}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLHandler", "..\..\..\Documents\Visual Studio 2015\Projects\SQLHandler\SQLHandler\SQLHandler.csproj", "{9FB07A0E-1B3A-4A6D-9E65-EA47ABA83130}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{B4FABBA3-8B6A-4256-8EE3-1458086A0E54}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B4FABBA3-8B6A-4256-8EE3-1458086A0E54}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B4FABBA3-8B6A-4256-8EE3-1458086A0E54}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FB07A0E-1B3A-4A6D-9E65-EA47ABA83130}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FB07A0E-1B3A-4A6D-9E65-EA47ABA83130}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FB07A0E-1B3A-4A6D-9E65-EA47ABA83130}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FB07A0E-1B3A-4A6D-9E65-EA47ABA83130}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

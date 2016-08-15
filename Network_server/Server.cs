@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
+using SQLHandler;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -111,7 +112,7 @@ namespace Network_server
                                 }
                                 else
                                 {
-                                    w.Write($"The winner is {client.userName}! Better luck next time.");
+                                    w.Write($"The game is over! Sorry {client.userName} you lost!");
                                     w.Flush();
                                 }
                             }
@@ -143,7 +144,7 @@ namespace Network_server
 
         private void SaveHighscore(string userName, int highScore)
         {
-            SQL.AddNewHighscore(userName, highScore);
+            SQLUtils.AddNewHighscore(userName, highScore);
         }
 
         private ClientHandler GetWinner(List<ClientHandler> clients)

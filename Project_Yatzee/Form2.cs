@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SQLHandler;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -22,6 +23,21 @@ namespace Project_Yatzee
         {
             this.DialogResult = System.Windows.Forms.DialogResult.OK;
             UserName = textBoxUsernameInput.Text;
+        }
+
+        private void listBoxHighscores_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form2_Load(object sender, EventArgs e)
+        {
+            var tmpList = SQLUtils.LoadHighscores();
+
+            foreach (var highscore in tmpList)
+            {
+                listBoxHighscores.Items.Add(highscore.HighScore + ", " + highscore.UserName);
+            }
         }
     }
 }
