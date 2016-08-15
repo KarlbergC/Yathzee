@@ -28,38 +28,18 @@ namespace Project_Yatzee
         {
             InitializeComponent();
             CheckForIllegalCrossThreadCalls = false;
-
-        }
-
-        private void ScoreHandler(int index, Func<List<DiceButton>, int> compute)
-        {
-            if ((counter > 0) && (tableLayoutPanel1.Controls[index].Text == ""))
-            {
-                scoreTable.SingleScoreValue = compute(clientPlayer.diceButtonMessage);
-                tableLayoutPanel1.Controls[index].Text = scoreTable.SingleScoreValue.ToString();
-                CalulateTotalLower(scoreTable.SingleScoreValue);
-                CalulateTotalUpper(scoreTable.SingleScoreValue);
-                CalculateTotal(scoreTable.SingleScoreValue);
-                scoreTable.Row = index;
-                clientPlayer.Send(scoreTable);
-            }
-        }
-        private void UpperScoreHandler(int index, int chosenDiceValue)
-        {
-            if ((counter > 0) && (tableLayoutPanel1.Controls[index].Text == ""))
-            {
-                scoreTable.SingleScoreValue = score.AddUpDice(chosenDiceValue, clientPlayer.diceButtonMessage);
-                tableLayoutPanel1.Controls[index].Text = scoreTable.SingleScoreValue.ToString();
-                CalculateTotal(scoreTable.SingleScoreValue);
-                CalulateTotalUpper(scoreTable.SingleScoreValue);
-                scoreTable.Row = index;
-                clientPlayer.Send(scoreTable);
-            }
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-
-            clientPlayer = new Client(this);
+            using (Form2 form2 = new Form2())
+            {
+                if (form2.ShowDialog() == DialogResult.OK)
+                {
+                    labelPlayer.Text = form2.UserName;
+                    scoreTable.UserName = form2.UserName;
+                }
+            }
+                clientPlayer = new Client(this);
             CreateButtonList();
 
             //TextBox Text1 = new TextBox();
@@ -125,12 +105,34 @@ namespace Project_Yatzee
             else
                 diceButton.BackColor = Color.LightGray;
         }
-
+        private void ScoreHandler(int index, Func<List<DiceButton>, int> compute)
+        {
+            if ((counter > 0) && (tableLayoutPanel1.Controls[index].Text == ""))
+            {
+                scoreTable.SingleScoreValue = compute(clientPlayer.diceButtonMessage);
+                tableLayoutPanel1.Controls[index].Text = scoreTable.SingleScoreValue.ToString();
+                CalulateTotalLower(scoreTable.SingleScoreValue);
+                CalulateTotalUpper(scoreTable.SingleScoreValue);
+                CalculateTotal(scoreTable.SingleScoreValue);
+                scoreTable.Row = index;
+                clientPlayer.Send(scoreTable);
+            }
+        }
+        private void UpperScoreHandler(int index, int chosenDiceValue)
+        {
+            if ((counter > 0) && (tableLayoutPanel1.Controls[index].Text == ""))
+            {
+                scoreTable.SingleScoreValue = score.AddUpDice(chosenDiceValue, clientPlayer.diceButtonMessage);
+                tableLayoutPanel1.Controls[index].Text = scoreTable.SingleScoreValue.ToString();
+                CalculateTotal(scoreTable.SingleScoreValue);
+                CalulateTotalUpper(scoreTable.SingleScoreValue);
+                scoreTable.Row = index;
+                clientPlayer.Send(scoreTable);
+            }
+        }
         private void buttonDice1_MouseClick(object sender, MouseEventArgs e)
         {
         }
-
-
         private void button1_Click(object sender, EventArgs e)
         {
             UpperScoreHandler(0, 1);
@@ -147,12 +149,10 @@ namespace Project_Yatzee
         {
             UpperScoreHandler(3, 4);
         }
-
         private void button5_Click_1(object sender, EventArgs e)
         {
             UpperScoreHandler(4, 5);
         }
-
         private void button6_Click(object sender, EventArgs e)
         {
             UpperScoreHandler(5, 6);
@@ -171,18 +171,15 @@ namespace Project_Yatzee
             //    clientPlayer.Send(scoreTable);
             //}
         }
-
         private void button4Kind_Click(object sender, EventArgs e)
         {
             ScoreHandler(11, score.CalculateFourOfAKind);
         }
-
         private void CalulateTotalLower(int displayScore)
         {
             scoreTable.TotalLowerScore += displayScore;
             tableLayoutPanel1.Controls[16].Text = scoreTable.TotalLowerScore.ToString();
         }
-
         private void CalulateTotalUpper(int displayScore)
         {
             scoreTable.TotalUpperScore += displayScore;
@@ -195,8 +192,6 @@ namespace Project_Yatzee
                 scoreTable.Row = 7;
             }
         }
-
-
         private void buttonSmallStraight_Click(object sender, EventArgs e)
         {
             ScoreHandler(13, score.CalculateSmallStraight);
@@ -217,7 +212,6 @@ namespace Project_Yatzee
         {
             ScoreHandler(15, score.CalculateYahtzee);
         }
-
         private void CalculateTotal(int displayScore)
         {
             if (counterClicked == 0)
@@ -229,7 +223,6 @@ namespace Project_Yatzee
                 ResetDice();
             }
         }
-
         private void ResetDice()
         {
             foreach (var listButton in clientPlayer.diceButtonMessage)
@@ -250,7 +243,6 @@ namespace Project_Yatzee
             else
                 MessageBox.Show("No more throws");
         }
-
         private void RollDice()
         {
             Random rnd = new Random();

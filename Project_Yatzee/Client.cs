@@ -26,7 +26,6 @@ namespace Project_Yatzee
         public Client(Form1 form1)
         {
             _form1 = form1;
-
         }
         public Client(string ipAddress, Form1 form1, ScoreTable scoreTableMessage, List<DiceButton> diceButtonMessage, int port = 5000)
         {
@@ -40,7 +39,8 @@ namespace Project_Yatzee
 
         public void Start()
         {
-            client = new TcpClient("192.168.220.109", 5000);
+            
+            client = new TcpClient("192.168.220.126", 5000);
 
             //Thread listenerThread = new Thread(SendMessage);
             //listenerThread.Start();
