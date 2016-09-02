@@ -33,7 +33,7 @@ namespace Project_Yatzee
             this.scoreTableMessage = scoreTableMessage;
             this.port = port;
             _form1 = form1;
-            //Instansiera listan här?
+
             this.Start();
         }
 
@@ -42,14 +42,9 @@ namespace Project_Yatzee
             
             client = new TcpClient("192.168.220.126", 5000);
 
-            //Thread listenerThread = new Thread(SendMessage);
-            //listenerThread.Start();
-
             Thread senderThread = new Thread(Listen);
             senderThread.Start();
 
-            //senderThread.Join();
-            //listenerThread.Join();
         }
 
         public void Send(ScoreTable scoreTableMessage)
@@ -111,9 +106,6 @@ namespace Project_Yatzee
          
         private void UpdateList(ScoreTable temp)
         {
-            //Label tempLabel = _form1.opponentUserName;
-            ////Label tempLabel = _form1.opponentUserName;
-            //tempLabel.Invoke(new Action(() => tempLabel.Text = temp.UserName));
 
             TextBox tempBox = _form1.textBoxList2.ElementAt(temp.Row);
             tempBox.Invoke(new Action(() => tempBox.Text = temp.SingleScoreValue.ToString()));

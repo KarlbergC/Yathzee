@@ -37,8 +37,6 @@ namespace Network_server
                     Console.WriteLine("Client connected " + clients.Count());
                 }
 
-                //MessageBox.Show("Sorry the game is full, try again later!");
-
                 listener.Stop();
             }
             catch (Exception ex)
@@ -130,16 +128,7 @@ namespace Network_server
                     }
                 }
             }
-            //else
-            //{
-            //    foreach (ClientHandler client in clients)
-            //    {
-            //        NetworkStream n = client.tcpClient.GetStream();
-            //        BinaryWriter w = new BinaryWriter(n);
-            //        w.Write("Spelet är slut x vann");
-            //        w.Flush();
-            //    }
-            //}
+          
         }
 
         private void SaveHighscore(string userName, int highScore)
