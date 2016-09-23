@@ -20,14 +20,15 @@ namespace Project_Yatzee
         public List<DiceButton> diceButtonMessage = new List<DiceButton>();
         private TcpClient client;
         private string ipAddress;
-        private Form1 _form1;
+        private GameBoard _form1;
         int port;
+        private Form2 _form2;
 
-        public Client(Form1 form1)
+        public Client(GameBoard form1)
         {
             _form1 = form1;
         }
-        public Client(string ipAddress, Form1 form1, ScoreTable scoreTableMessage, List<DiceButton> diceButtonMessage, int port = 5000)
+        public Client(string ipAddress, GameBoard form1, ScoreTable scoreTableMessage, List<DiceButton> diceButtonMessage, int port = 5000)
         {
             this.ipAddress = ipAddress;
             this.scoreTableMessage = scoreTableMessage;
@@ -40,7 +41,7 @@ namespace Project_Yatzee
         public void Start()
         {
             
-            client = new TcpClient("192.168.220.126", 5000);
+            client = new TcpClient(_form2.IPAddress, 5000);
 
             Thread senderThread = new Thread(Listen);
             senderThread.Start();
@@ -126,7 +127,7 @@ namespace Project_Yatzee
 
         }
 
-        public void DisablePanelContents(Form1 form1)
+        public void DisablePanelContents(GameBoard form1)
         {
             foreach (var item in form1.Controls)
             {
@@ -134,7 +135,7 @@ namespace Project_Yatzee
             }
         }
 
-        public void EnablePanelContents(Form1 form1)
+        public void EnablePanelContents(GameBoard form1)
         {
             foreach (var item in form1.Controls)
             {

@@ -14,6 +14,7 @@ namespace Project_Yatzee
     public partial class Form2 : Form
     {
         public string UserName { get; set; }
+        public string IPAddress { get; set; }
         public Form2()
         {
             InitializeComponent();
@@ -23,6 +24,7 @@ namespace Project_Yatzee
         {
             this.DialogResult = System.Windows.Forms.DialogResult.OK;
             UserName = textBoxUsernameInput.Text;
+            IPAddress = textBoxIPAddress.Text;
         }
 
         private void listBoxHighscores_SelectedIndexChanged(object sender, EventArgs e)
@@ -40,5 +42,7 @@ namespace Project_Yatzee
                 listBoxHighscores.Items.Add(highscore.HighScore + ", " + highscore.UserName);
             }
         }
+
+
     }
 }

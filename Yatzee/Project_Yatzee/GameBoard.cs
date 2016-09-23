@@ -14,7 +14,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolBar;
 
 namespace Project_Yatzee
 {
-    public partial class Form1 : Form
+    public partial class GameBoard : Form
     {
         Client clientPlayer;
         public int counter;
@@ -25,7 +25,7 @@ namespace Project_Yatzee
         public List<TextBox> textBoxList2 = new List<TextBox>();
         public Label opponentUserName = new Label();
 
-        public Form1()
+        public GameBoard()
         {
             InitializeComponent();
             CheckForIllegalCrossThreadCalls = false;
