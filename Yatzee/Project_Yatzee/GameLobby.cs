@@ -36,5 +36,7 @@ namespace Project_Yatzee
                 listBoxHighscores.Items.Add(highscore.HighScore + ", " + highscore.UserName);
             }
         }
+
+
     }
 }

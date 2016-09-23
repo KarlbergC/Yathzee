@@ -22,6 +22,7 @@ namespace Project_Yatzee
         private string ipAddress;
         private GameBoard gameBoard;
         int port;
+        private Form2 _form2;
 
         public Client(GameBoard gameBoard)
         {
