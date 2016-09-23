@@ -20,36 +20,29 @@ namespace Project_Yatzee
         public List<DiceButton> diceButtonMessage = new List<DiceButton>();
         private TcpClient client;
         private string ipAddress;
-        private Form1 _form1;
+        private GameBoard gameBoard;
         int port;
 
-        public Client(Form1 form1)
+        public Client(GameBoard gameBoard)
         {
-            _form1 = form1;
+            this.gameBoard = gameBoard;
         }
-        public Client(string ipAddress, Form1 form1, ScoreTable scoreTableMessage, List<DiceButton> diceButtonMessage, int port = 5000)
+        public Client(string ipAddress, GameBoard gameBoard, ScoreTable scoreTableMessage, List<DiceButton> diceButtonMessage, int port = 5000)
         {
             this.ipAddress = ipAddress;
             this.scoreTableMessage = scoreTableMessage;
             this.port = port;
-            _form1 = form1;
-            //Instansiera listan här?
-            this.Start();
+            this.gameBoard = gameBoard;
+
+            this.Start(this.ipAddress);
         }
 
-        public void Start()
+        public void Start(string ipAdress)
         {
-            
-            client = new TcpClient("192.168.220.126", 5000);
-
-            //Thread listenerThread = new Thread(SendMessage);
-            //listenerThread.Start();
+            client = new TcpClient(ipAdress, 5000);
 
             Thread senderThread = new Thread(Listen);
             senderThread.Start();
-
-            //senderThread.Join();
-            //listenerThread.Join();
         }
 
         public void Send(ScoreTable scoreTableMessage)
@@ -62,7 +55,7 @@ namespace Project_Yatzee
                 string jSonString = JsonConvert.SerializeObject(scoreTableMessage);
                 w.Write(jSonString);
                 w.Flush();
-                DisablePanelContents(_form1);
+                DisablePanelContents(gameBoard);
             }
             catch (Exception ex)
             {
@@ -88,7 +81,7 @@ namespace Project_Yatzee
                             {
                                 ScoreTable temp = o as ScoreTable;
                                 UpdateList(temp);
-                                EnablePanelContents(_form1);
+                                EnablePanelContents(gameBoard);
                             }
                         }
                         catch (Exception ex)
@@ -111,17 +104,13 @@ namespace Project_Yatzee
          
         private void UpdateList(ScoreTable temp)
         {
-            //Label tempLabel = _form1.opponentUserName;
-            ////Label tempLabel = _form1.opponentUserName;
-            //tempLabel.Invoke(new Action(() => tempLabel.Text = temp.UserName));
-
-            TextBox tempBox = _form1.textBoxList2.ElementAt(temp.Row);
+            TextBox tempBox = gameBoard.opponentScoreList.ElementAt(temp.Row);
             tempBox.Invoke(new Action(() => tempBox.Text = temp.SingleScoreValue.ToString()));
-            TextBox tempBox2 = _form1.textBoxList2.ElementAt(6);
+            TextBox tempBox2 = gameBoard.opponentScoreList.ElementAt(6);
             tempBox2.Invoke(new Action(() => tempBox2.Text = temp.TotalUpperScore.ToString()));
-            TextBox tempBox3 = _form1.textBoxList2.ElementAt(16);
+            TextBox tempBox3 = gameBoard.opponentScoreList.ElementAt(16);
             tempBox3.Invoke(new Action(() => tempBox3.Text = temp.TotalLowerScore.ToString()));
-            TextBox tempBox4 = _form1.textBoxList2.ElementAt(17);
+            TextBox tempBox4 = gameBoard.opponentScoreList.ElementAt(17);
             tempBox4.Invoke(new Action(() => tempBox4.Text = temp.TotalScore.ToString()));
         }
 
@@ -129,12 +118,10 @@ namespace Project_Yatzee
         {
             NetworkStream n = client.GetStream();
             BinaryWriter w = new BinaryWriter(n);
-            w.Write("Hejsan");
             w.Flush();
-
         }
 
-        public void DisablePanelContents(Form1 form1)
+        public void DisablePanelContents(GameBoard form1)
         {
             foreach (var item in form1.Controls)
             {
@@ -142,7 +129,7 @@ namespace Project_Yatzee
             }
         }
 
-        public void EnablePanelContents(Form1 form1)
+        public void EnablePanelContents(GameBoard form1)
         {
             foreach (var item in form1.Controls)
             {

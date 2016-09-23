@@ -87,7 +87,7 @@ namespace Project_Yatzee.GameLogic
         }
 
         ///
-        /// Routine to calculate Full House Score
+        /// Routine to calculate Full House Score - fixed score 25 
         ///
         public int CalculateFullHouse(List<DiceButton> myDice)
         {
@@ -110,7 +110,6 @@ namespace Project_Yatzee.GameLogic
                  ((i[2] == i[3]) && (i[3] == i[4])) && // Three of a Kind
                  (i[1] != i[2])))
             {
-                //todo fixa summan av tärningarna.
                 Sum = 25;
             }
 
@@ -166,7 +165,7 @@ namespace Project_Yatzee.GameLogic
         }
 
         ///
-        /// Routine to calculate Large Straight Score
+        /// Routine to calculate Large Straight Score 
         ///
         public int CalculateLargeStraight(List<DiceButton> myDice)
         {

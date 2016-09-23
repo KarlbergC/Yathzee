@@ -20,7 +20,6 @@ namespace SQLHandler
             try
             {
                 myConnection.Open();
-
                 SqlDataReader myReader = myCommand.ExecuteReader();
                 while (myReader.Read())
                 {

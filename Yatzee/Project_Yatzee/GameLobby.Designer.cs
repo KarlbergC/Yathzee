@@ -1,6 +1,6 @@
 ﻿namespace Project_Yatzee
 {
-    partial class Form2
+    partial class GameLobby
     {
         /// <summary>
         /// Required designer variable.
@@ -33,6 +33,8 @@
             this.buttonPlay = new System.Windows.Forms.Button();
             this.labelHighscore = new System.Windows.Forms.Label();
             this.listBoxHighscores = new System.Windows.Forms.ListBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBoxIPAddress = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // textBoxUsernameInput
@@ -54,7 +56,7 @@
             // 
             // buttonPlay
             // 
-            this.buttonPlay.Location = new System.Drawing.Point(29, 97);
+            this.buttonPlay.Location = new System.Drawing.Point(29, 177);
             this.buttonPlay.Name = "buttonPlay";
             this.buttonPlay.Size = new System.Drawing.Size(75, 23);
             this.buttonPlay.TabIndex = 2;
@@ -78,21 +80,39 @@
             this.listBoxHighscores.Name = "listBoxHighscores";
             this.listBoxHighscores.Size = new System.Drawing.Size(120, 95);
             this.listBoxHighscores.TabIndex = 4;
-            this.listBoxHighscores.SelectedIndexChanged += new System.EventHandler(this.listBoxHighscores_SelectedIndexChanged);
             // 
-            // Form2
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(29, 93);
+            this.label2.Name = "label2";
+            this.label2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.label2.Size = new System.Drawing.Size(127, 13);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Enter IP-Adress for server";
+            // 
+            // textBoxIPAddress
+            // 
+            this.textBoxIPAddress.Location = new System.Drawing.Point(29, 117);
+            this.textBoxIPAddress.Name = "textBoxIPAddress";
+            this.textBoxIPAddress.Size = new System.Drawing.Size(100, 20);
+            this.textBoxIPAddress.TabIndex = 5;
+            // 
+            // InputForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(495, 277);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.textBoxIPAddress);
             this.Controls.Add(this.listBoxHighscores);
             this.Controls.Add(this.labelHighscore);
             this.Controls.Add(this.buttonPlay);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBoxUsernameInput);
-            this.Name = "Form2";
-            this.Text = "Form2";
-            this.Load += new System.EventHandler(this.Form2_Load);
+            this.Name = "InputForm";
+            this.Text = "GameLobby";
+            this.Load += new System.EventHandler(this.GameLobby_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -105,5 +125,7 @@
         private System.Windows.Forms.Button buttonPlay;
         private System.Windows.Forms.Label labelHighscore;
         private System.Windows.Forms.ListBox listBoxHighscores;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox textBoxIPAddress;
     }
 }

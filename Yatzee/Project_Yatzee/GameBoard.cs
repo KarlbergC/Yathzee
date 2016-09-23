@@ -14,51 +14,47 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolBar;
 
 namespace Project_Yatzee
 {
-    public partial class Form1 : Form
+    public partial class GameBoard : Form
     {
         Client clientPlayer;
         public int counter;
         public int counterClicked = 0;
         ScoreTable scoreTable = new ScoreTable();
         CalculateScore score = new CalculateScore();
-        public List<TextBox> textBoxList1 = new List<TextBox>();
-        public List<TextBox> textBoxList2 = new List<TextBox>();
+        public List<TextBox> playerScoreList = new List<TextBox>();
+        public List<TextBox> opponentScoreList = new List<TextBox>();
         public Label opponentUserName = new Label();
 
-        public Form1()
+        public GameBoard()
         {
             InitializeComponent();
             CheckForIllegalCrossThreadCalls = false;
         }
-        private void Form1_Load(object sender, EventArgs e)
+        private void GameBoard_Load(object sender, EventArgs e)
         {
-            using (Form2 form2 = new Form2())
+            string ipAdress= "";
+            using (GameLobby lobby = new GameLobby())
             {
-                if (form2.ShowDialog() == DialogResult.OK)
+                if (lobby.ShowDialog() == DialogResult.OK)
                 {
-                    labelPlayer.Text = form2.UserName;
-                    scoreTable.UserName = form2.UserName;
+                    labelPlayer.Text = lobby.UserName;
+                    scoreTable.UserName = lobby.UserName;
+                    ipAdress = lobby.IPAddress;
                 }
             }
             clientPlayer = new Client(this);
-            //clientPlayer.Send(scoreTable);
             CreateButtonList();
 
             this.labelOpponent = opponentUserName;
-            //TextBox Text1 = new TextBox();
-            //tableLayoutPanel1.Controls.Add(Text1, 0, 0);
-
-            //TextBox TB = sender as TextBox;
-            //int index = this.tableLayoutPanel1.Controls.GetChildIndex(TB);
 
             int rowIndex = 0;
             int columnIndex = 0;
             for (int i = 0; i < 18; i++)
             {
                 TextBox Text = new TextBox();
-                textBoxList1.Add(Text);
+                playerScoreList.Add(Text);
                 Text.Name = "text+" + i + 1;
-                //Text.TextChanged += new System.EventHandler(this.TB_TextChanged);
+               
                 if (i % 2 == 0 && i > 0)
                     rowIndex++;
                 if (i % 2 != 0 && i > 0)
@@ -72,9 +68,9 @@ namespace Project_Yatzee
             for (int i = 0; i < 18; i++)
             {
                 TextBox Text = new TextBox();
-                textBoxList2.Add(Text);
+                opponentScoreList.Add(Text);
                 Text.Name = "text+" + i + 1;
-                //Text.TextChanged += new System.EventHandler(this.TB_TextChanged);
+                
                 if (i % 2 == 0 && i > 0)
                     rowIndex2++;
                 if (i % 2 != 0 && i > 0)
@@ -83,8 +79,7 @@ namespace Project_Yatzee
                     columnIndex2 = 0;
                 this.tableLayoutPanel2.Controls.Add(Text, columnIndex2, rowIndex2);
             }
-            clientPlayer.Start();
-            //skriv ip address etc
+            clientPlayer.Start(ipAdress);
         }
         public void CreateButtonList()
         {
@@ -115,7 +110,6 @@ namespace Project_Yatzee
                 scoreTable.SingleScoreValue = compute(clientPlayer.diceButtonMessage);
                 tableLayoutPanel1.Controls[index].Text = scoreTable.SingleScoreValue.ToString();
                 CalulateTotalLower(scoreTable.SingleScoreValue);
-                //CalulateTotalUpper(scoreTable.SingleScoreValue);
                 CalculateTotal(scoreTable.SingleScoreValue);
                 scoreTable.Row = index;
                 clientPlayer.Send(scoreTable);
@@ -164,15 +158,6 @@ namespace Project_Yatzee
         {
             ScoreHandler(10, score.CalculateThreeOfAKind);
 
-            //if ((counter > 0) && (tableLayoutPanel1.Controls[10].Text == ""))
-            //{
-            //    scoreTable.SingleScoreValue = score.CalculateThreeOfAKind(clientPlayer.diceButtonMessage);
-            //    tableLayoutPanel1.Controls[10].Text = scoreTable.SingleScoreValue.ToString();
-            //    CalculateTotal(scoreTable.SingleScoreValue);
-            //    CalulateTotalLower(scoreTable.SingleScoreValue);
-            //    scoreTable.Row = 10;
-            //    clientPlayer.Send(scoreTable);
-            //}
         }
         private void button4Kind_Click(object sender, EventArgs e)
         {
@@ -260,26 +245,28 @@ namespace Project_Yatzee
                     switch (button.Value)
                     {
                         case 1:
-                            button.Image = Image.FromFile(@"C:\Users\Administrator\Source\Repos\Yathzee4\Project_Yatzee\Images\die1.jpg");
+                            button.Image = Image.FromFile(@"C:\Users\Administrator\Source\Repos\Yathzee\Yatzee\Project_Yatzee\Images\die1.jpg");
                             break;
                         case 2:
-                            button.Image = Image.FromFile(@"C:\Users\Administrator\Source\Repos\Yathzee4\Project_Yatzee\Images\die2.jpg");
+                            button.Image = Image.FromFile(@"C:\Users\Administrator\Source\Repos\Yathzee\Yatzee\Project_Yatzee\Images\die2.jpg");
                             break;
                         case 3:
-                            button.Image = Image.FromFile(@"C:\Users\Administrator\Source\Repos\Yathzee4\Project_Yatzee\Images\die3.jpg");
+                            button.Image = Image.FromFile(@"C:\Users\Administrator\Source\Repos\Yathzee\Yatzee\Project_Yatzee\Images\die3.jpg");
                             break;
                         case 4:
-                            button.Image = Image.FromFile(@"C:\Users\Administrator\Source\Repos\Yathzee4\Project_Yatzee\Images\die4.jpg");
+                            button.Image = Image.FromFile(@"C:\Users\Administrator\Source\Repos\Yathzee\Yatzee\Project_Yatzee\Images\die4.jpg");
                             break;
                         case 5:
-                            button.Image = Image.FromFile(@"C:\Users\Administrator\Source\Repos\Yathzee4\Project_Yatzee\Images\die5.jpg");
+                            button.Image = Image.FromFile(@"C:\Users\Administrator\Source\Repos\Yathzee\Yatzee\Project_Yatzee\Images\die5.jpg");
                             break;
                         case 6:
-                            button.Image = Image.FromFile(@"C:\Users\Administrator\Source\Repos\Yathzee4\Project_Yatzee\Images\die6.jpg");
+                            button.Image = Image.FromFile(@"C:\Users\Administrator\Source\Repos\Yathzee\Yatzee\Project_Yatzee\Images\die6.jpg");
                             break;
                     }
                 }
             }
         }
+
+
     }
 }

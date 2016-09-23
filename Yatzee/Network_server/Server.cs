@@ -37,8 +37,6 @@ namespace Network_server
                     Console.WriteLine("Client connected " + clients.Count());
                 }
 
-                //MessageBox.Show("Sorry the game is full, try again later!");
-
                 listener.Stop();
             }
             catch (Exception ex)
@@ -56,30 +54,24 @@ namespace Network_server
         {
             throw new NotImplementedException();
         }
-
-
         static int GiveMeTheTotalScore(string json)
         {
             JObject o = JObject.Parse(json);
             string totalScore = (string)o.SelectToken("TotalScore");
             return Convert.ToInt32(totalScore);
         }
-
         static string GiveMeUserName(string json)
         {
             JObject o = JObject.Parse(json);
             string userName = (string)o.SelectToken("UserName");
             return userName;
         }
-
         internal void Broadcast(ClientHandler fromClient, string message)
         {
             if (fromClient.userName == null)
             {
                 fromClient.userName = GiveMeUserName(message);
-
             }
-
             Console.WriteLine(fromClient._remainingMoveCounter);
             fromClient.TotalScore = GiveMeTheTotalScore(message);
             Console.WriteLine(fromClient.TotalScore);
@@ -116,8 +108,6 @@ namespace Network_server
                                     w.Flush();
                                 }
                             }
-
-                            Console.WriteLine("Slut på spelet");
                         }
                     }
 
@@ -130,18 +120,8 @@ namespace Network_server
                     }
                 }
             }
-            //else
-            //{
-            //    foreach (ClientHandler client in clients)
-            //    {
-            //        NetworkStream n = client.tcpClient.GetStream();
-            //        BinaryWriter w = new BinaryWriter(n);
-            //        w.Write("Spelet är slut x vann");
-            //        w.Flush();
-            //    }
-            //}
+          
         }
-
         private void SaveHighscore(string userName, int highScore)
         {
             SQLUtils.AddNewHighscore(userName, highScore);

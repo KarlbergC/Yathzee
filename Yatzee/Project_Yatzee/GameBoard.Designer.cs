@@ -1,6 +1,6 @@
 ﻿namespace Project_Yatzee
 {
-    partial class Form1
+    partial class GameBoard
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GameBoard));
             this.buttonRoll = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.button1 = new System.Windows.Forms.Button();
@@ -377,7 +377,7 @@
             this.buttonDice1.Click += new System.EventHandler(this.buttonDice_Click);
             this.buttonDice1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.buttonDice1_MouseClick);
             // 
-            // Form1
+            // GameBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -413,9 +413,9 @@
             this.Controls.Add(this.buttonDice2);
             this.Controls.Add(this.buttonDice1);
             this.Controls.Add(this.buttonRoll);
-            this.Name = "Form1";
+            this.Name = "GameBoard";
             this.Text = "Yahtzee!";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.GameBoard_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -11,10 +11,11 @@ using System.Windows.Forms;
 
 namespace Project_Yatzee
 {
-    public partial class Form2 : Form
+    public partial class GameLobby : Form
     {
         public string UserName { get; set; }
-        public Form2()
+        public string IPAddress { get; set; }
+        public GameLobby()
         {
             InitializeComponent();
         }
@@ -23,14 +24,9 @@ namespace Project_Yatzee
         {
             this.DialogResult = System.Windows.Forms.DialogResult.OK;
             UserName = textBoxUsernameInput.Text;
+            IPAddress = textBoxIPAddress.Text;
         }
-
-        private void listBoxHighscores_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Form2_Load(object sender, EventArgs e)
+        private void GameLobby_Load(object sender, EventArgs e)
         {
             var tmpList = SQLUtils.LoadHighscores()
                 .OrderByDescending(o => o.HighScore);
